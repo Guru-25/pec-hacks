@@ -1,0 +1,399 @@
+{%  extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+<div>
+   
+    <br>
+    <div class="container">
+        <p style="text-align:right;"><a  href="{% url 'report'  %}" style="font-size:13px;font-weight:400;font-family: 'Roboto', sans-serif;">Report a Problem <i class="bi bi-chevron-right"></i></a></p>
+        
+        <p  style="font-size:28px;font-weight:500;font-family: 'Roboto', sans-serif;text-align :center;margin:10px;">Autism Spectrum Disorder (ASD) Diagnosis</p>
+
+        <p  style="margin-left:auto;margin-right:auto;font-size:13px;font-weight:400;font-family: 'Roboto', sans-serif;text-align :center;" >Here you can test whether your toddler between (1-3 years) has ASD symptoms or not. <br>Read the questions given below carefully and answer accordingly.</p>
+        
+           {% if output1 or output1 == 0 %}
+           <div style="background:black;border-radius:20px;padding:40px;">
+            
+            <p style="text-align:center;color:rgb(170, 170, 170);font-weight:500;font-size:15px;">Results </p>
+            <hr color="#161616" style="margin:20px 8px 20px 8px">
+            <p style="text-align:center;color:rgb(255, 238, 87);font-size:16px;font-weight:500">{{ output1 }} </p>
+            <br>
+       
+           <table  class="table table-striped table-borderless  table-sm table-dark" style="font-size:14px;background:black">
+            <thead><tr><th scope="col"> </th><th scope="col">Question</th><th scope="col">Result</th></tr></thead>
+            <tbody>
+
+                {% if Q1 == '0' %}
+                <tr><th scope="row">1</th><td>Does your child look at you when you call his/her name?</td><td style="color:green">Negative</td></tr>
+                {% else %}
+                <tr><th scope="row">1</th><td>Does your child look at you when you call his/her name?</td><td style="color:red">Positive</td></tr>
+                {% endif %}
+
+                {% if Q2 == '0' %}
+                <tr><th scope="row">2</th><td>How easy is it for you to get eye contact with your child?</td><td style="color:green">Negative</td></tr>
+                {% else %}
+                <tr><th scope="row">2</th><td>How easy is it for you to get eye contact with your child?</td><td style="color:red">Positive</td></tr>
+                {% endif %}
+
+                {% if Q3 == '0' %}
+                <tr><th scope="row">3</th><td>Does your child point to indicate that she/he wants something? </td><td style="color:green">Negative</td></tr>
+                {% else %}
+                <tr><th scope="row">3</th><td>Does your child point to indicate that she/he wants something? </td><td style="color:red">Positive</td></tr>
+                {% endif %}
+
+                {% if Q4 == '0' %}
+                <tr><th scope="row">4</th><td>Does your child point to share interest with you? </td><td style="color:green">Negative</td></tr>
+                {% else %}
+                <tr><th scope="row">4</th><td>Does your child point to share interest with you? </td><td style="color:red">Positive</td></tr>
+                {% endif %}
+
+                {% if Q5 == '0' %}
+                <tr><th scope="row">5</th><td>Does your child pretend?</td><td style="color:green">Negative</td></tr>
+                {% else %}
+                <tr><th scope="row">5</th><td>Does your child pretend?</td><td style="color:red">Positive</td></tr>
+                {% endif %}
+
+
+                {% if Q6 == '0' %}
+                <tr><th scope="row">6</th><td>Does your child follow where you’re looking?</td><td style="color:green">Negative</td></tr>
+                {% else %}
+                <tr><th scope="row">6</th><td>Does your child follow where you’re looking?</td><td style="color:red">Positive</td></tr>
+                {% endif %}
+
+                {% if Q7 == '0' %}
+                <tr><th scope="row">7</th><td>If you or someone else in the family is visibly upset, does your child show signs of wanting to comfort them?</td><td style="color:green">Negative</td></tr>
+                {% else %}
+                <tr><th scope="row">7</th><td>If you or someone else in the family is visibly upset, does your child show signs of wanting to comfort them?</td><td style="color:red">Positive</td></tr>
+                {% endif %}
+
+                {% if Q8 == '0' %}
+                <tr><th scope="row">8</th><td>Would you describe your child’s first words as:</td><td style="color:green">Negative</td></tr>
+                {% else %}
+                <tr><th scope="row">8</th><td>Would you describe your child’s first words as:</td><td style="color:red">Positive</td></tr>
+                {% endif %}
+
+                {% if Q9 == '0' %}
+                <tr><th scope="row">9</th><td>Does your child use simple gestures?</td><td style="color:green">Negative</td></tr>
+                {% else %}
+                <tr><th scope="row">9</th><td>Does your child use simple gestures?</td><td style="color:red">Positive</td></tr>
+                {% endif %}
+
+                {% if Q10 == '0' %}
+                <tr><th scope="row">10</th><td>Does your child stare at nothing with no apparent purpose?</td><td style="color:green">Negative</td></tr>
+                {% else %}
+                <tr><th scope="row">10</th><td>Does your child stare at nothing with no apparent purpose?</td><td style="color:red">Positive</td></tr>
+                {% endif %}
+
+          
+            </tbody>
+          </table>
+
+        </div>
+   
+           {% else %}
+           <form method="post" enctype="multipart/form-data" action ="{% url 'ASDdiagnosis_result' %}">
+            {% csrf_token %}
+
+            <label for="val1" style="font-size:14px;color:black;font-weight:700;margin:5px;margin-top:15px;">1. Does	   your	   child	   look	   at	   you	   when	   you	   call	   his/her	   name?	   	    </label>
+            <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+            <div class="form-check">
+            <input class="form-check-input" value="0" type="radio" name="val1" id="Always"checked >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="Always">Always</label>
+            <br>
+            <input class="form-check-input" value="0" type="radio" name="val1" id="Usually" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Usually">Usually</label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val1" id="Sometimes" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Sometimes">Sometimes</label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val1" id="Rarely" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Rarely">Rarely</label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val1" id="Never" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Never">Never</label>
+            </div>
+            </div>
+
+            <br>
+
+            <label for="val1" style="font-size:14px;color:black;font-weight:700;margin:5px;margin-top:15px;">2. How	   easy	   is	   it	   for	   you	   to	   get	   eye	   contact	   with	   your	   child?	   	    </label>
+            <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+            <div class="form-check">
+            <input class="form-check-input" value="0" type="radio" name="val2" id="Very easy"checked >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="Very easy">Very easy</label>
+            <br>
+            <input class="form-check-input" value="0" type="radio" name="val2" id="Quite easy" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Quite easy">Quite	   easy</label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val2" id="Quite	   difficult" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Quite	   difficult">Quite	   difficult</label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val2" id="Very	   difficult" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Very	   difficult">Very	   difficult</label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val2" id="Impossible" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Impossible">Impossible</label>
+            </div>
+            </div>
+
+
+            <br>
+
+            <label for="val1" style="font-size:14px;color:black;font-weight:700;margin:5px;margin-top:15px;">3. Does	   your	   child	   point	   to	   indicate	   that	   she/he	   wants	   something?	   	   (e.g.	   a	   toy	   that	   is	   out	   of	   reach) </label>
+            <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+            <div class="form-check">
+            <input class="form-check-input" value="0" type="radio" name="val3" id="Many	   times	   a	   day	   "checked >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="Many	   times	   a	   day	   ">Many	   times	   a	   day	   </label>
+            <br>
+            <input class="form-check-input" value="0" type="radio" name="val3" id="A	   few	   times	   a	   day	   	   " >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="A	   few	   times	   a	   day	   	   ">A	   few	   times	   a	   day	   	   </label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val3" id="A	   few	   times	   a	   week" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="A	   few	   times	   a	   week">A	   few	   times	   a	   week</label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val3" id="Less	   than	   once	   a	   week" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Less	   than	   once	   a	   week">Less	   than	   once	   a	   week</label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val3" id="Never" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Never">Never</label>
+            </div>
+            </div>
+ 
+
+            <br>
+
+
+            <label for="val1" style="font-size:14px;color:black;font-weight:700;margin:5px;margin-top:15px;">4. Does	   your	   child	   point	   to	   share	   interest	   with	   you?	   (e.g.	   pointing	   at	   an	   interesting	   sight)</label>
+            <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+            <div class="form-check">
+            <input class="form-check-input" value="0" type="radio" name="val4" id="Many	   times	   a	   day	   "checked >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="Many	   times	   a	   day	   ">Many	   times	   a	   day	   </label>
+            <br>
+            <input class="form-check-input" value="0" type="radio" name="val4" id="A	   few	   times	   a	   day	   	   " >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="A	   few	   times	   a	   day	   	   ">A	   few	   times	   a	   day	   	   </label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val4" id="A	   few	   times	   a	   week" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="A	   few	   times	   a	   week">A	   few	   times	   a	   week</label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val4" id="Less	   than	   once	   a	   week" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Less	   than	   once	   a	   week">Less	   than	   once	   a	   week</label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val4" id="Never" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Never">Never</label>
+            </div>
+            </div>
+
+
+            <br>
+
+
+            <label for="val1" style="font-size:14px;color:black;font-weight:700;margin:5px;margin-top:15px;">5. Does	   your	   child	   pretend?	   (e.g.	   care	   for	   dolls,	   talk	   on	   a	   toy	   phone)	</label>
+            <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+            <div class="form-check">
+            <input class="form-check-input" value="0" type="radio" name="val5" id="Many	   times	   a	   day	   "checked >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="Many	   times	   a	   day	   ">Many	   times	   a	   day	   </label>
+            <br>
+            <input class="form-check-input" value="0" type="radio" name="val5" id="A	   few	   times	   a	   day	   	   " >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="A	   few	   times	   a	   day	   	   ">A	   few	   times	   a	   day	   	   </label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val5" id="A	   few	   times	   a	   week" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="A	   few	   times	   a	   week">A	   few	   times	   a	   week</label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val5" id="Less	   than	   once	   a	   week" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Less	   than	   once	   a	   week">Less	   than	   once	   a	   week</label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val5" id="Never" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Never">Never</label>
+            </div>
+            </div>
+
+
+            <br>
+
+
+            <label for="val1" style="font-size:14px;color:black;font-weight:700;margin:5px;margin-top:15px;">6. Does	   your	   child	   follow	   where	   you’re	   looking?</label>
+            <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+            <div class="form-check">
+            <input class="form-check-input" value="0" type="radio" name="val6" id="Many	   times	   a	   day	   "checked >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="Many	   times	   a	   day	   ">Many	   times	   a	   day	   </label>
+            <br>
+            <input class="form-check-input" value="0" type="radio" name="val6" id="A	   few	   times	   a	   day	   	   " >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="A	   few	   times	   a	   day	   	   ">A	   few	   times	   a	   day	   	   </label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val6" id="A	   few	   times	   a	   week" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="A	   few	   times	   a	   week">A	   few	   times	   a	   week</label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val6" id="Less	   than	   once	   a	   week" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Less	   than	   once	   a	   week">Less	   than	   once	   a	   week</label>
+            <br>
+            <input class="form-check-input" value="1" type="radio" name="val6" id="Never" >
+            <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Never">Never</label>
+            </div>
+            </div>
+
+    
+            <br>
+
+
+            <label for="val1" style="font-size:14px;color:black;font-weight:700;margin:5px;margin-top:15px;">7. If	   you	   or	   someone	   else	   in	   the	   family	   is	   visibly	   upset,	   does	   your	   child	   show	   signs	   of	   wanting	   to	   comfort	   them?	   	   (e.g.	   stroking	   hair,	   hugging	   them)</label>
+            <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+            <div class="form-check">
+                <input class="form-check-input" value="0" type="radio" name="val7" id="Always"checked >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="Always">Always</label>
+                <br>
+                <input class="form-check-input" value="0" type="radio" name="val7" id="Usually" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Usually">Usually</label>
+                <br>
+                <input class="form-check-input" value="1" type="radio" name="val7" id="Sometimes" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Sometimes">Sometimes</label>
+                <br>
+                <input class="form-check-input" value="1" type="radio" name="val7" id="Rarely" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Rarely">Rarely</label>
+                <br>
+                <input class="form-check-input" value="1" type="radio" name="val7" id="Never" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Never">Never</label>
+                </div>
+                </div>
+
+
+                <br>
+
+
+            <label for="val1" style="font-size:14px;color:black;font-weight:700;margin:5px;margin-top:15px;">8. Would	   you	   describe	   your	   child’s	   first	   words	   as:</label>
+            <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+            <div class="form-check">
+                <input class="form-check-input" value="0" type="radio" name="val8" id="Very	   typical	"checked >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="Very	   typical	">Very	   typical	</label>
+                <br>
+                <input class="form-check-input" value="0" type="radio" name="val8" id="Quite	   typical	" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Quite	   typical	">Quite	   typical	</label>
+                <br>
+                <input class="form-check-input" value="1" type="radio" name="val8" id="Slightly	   unusual	" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Slightly	   unusual	">Slightly	   unusual	</label>
+                <br>
+                <input class="form-check-input" value="1" type="radio" name="val8" id="Very	   unusual	" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Very	   unusual	">Very	   unusual	</label>
+                <br>
+                <input class="form-check-input" value="1" type="radio" name="val8" id="My	   child	   doesn’t	   speak	   	" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="My	   child	   doesn’t	   speak	   	">My	   child	   doesn’t	   speak	   	Never</label>
+                </div>
+                </div>
+
+
+                <br>
+
+
+                <label for="val1" style="font-size:14px;color:black;font-weight:700;margin:5px;margin-top:15px;">9. Does	   your	   child	   use	   simple	   gestures?	   	   (e.g.	   wave	   goodbye)</label>
+                <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+                <div class="form-check">
+                <input class="form-check-input" value="0" type="radio" name="val9" id="Many	   times	   a	   day	   "checked >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="Many	   times	   a	   day	   ">Many	   times	   a	   day	   </label>
+                <br>
+                <input class="form-check-input" value="0" type="radio" name="val9" id="A	   few	   times	   a	   day	   	   " >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="A	   few	   times	   a	   day	   	   ">A	   few	   times	   a	   day	   	   </label>
+                <br>
+                <input class="form-check-input" value="1" type="radio" name="val9" id="A	   few	   times	   a	   week" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="A	   few	   times	   a	   week">A	   few	   times	   a	   week</label>
+                <br>
+                <input class="form-check-input" value="1" type="radio" name="val9" id="Less	   than	   once	   a	   week" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Less	   than	   once	   a	   week">Less	   than	   once	   a	   week</label>
+                <br>
+                <input class="form-check-input" value="1" type="radio" name="val9" id="Never" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Never">Never</label>
+                </div>
+                </div>
+
+
+                <br>
+
+
+                <label for="val1" style="font-size:14px;color:black;font-weight:700;margin:5px;margin-top:15px;">10. Does	   your	   child	   stare	   at	   nothing	   with	   no	   apparent	   purpose?</label>
+                <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+                <div class="form-check">
+                <input class="form-check-input" value="1" type="radio" name="val10" id="Many	   times	   a	   day	   "checked >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="Many	   times	   a	   day	   ">Many	   times	   a	   day	   </label>
+                <br>
+                <input class="form-check-input" value="1" type="radio" name="val10" id="A	   few	   times	   a	   day	   	   " >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="A	   few	   times	   a	   day	   	   ">A	   few	   times	   a	   day	   	   </label>
+                <br>
+                <input class="form-check-input" value="1" type="radio" name="val10" id="A	   few	   times	   a	   week" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="A	   few	   times	   a	   week">A	   few	   times	   a	   week</label>
+                <br>
+                <input class="form-check-input" value="0" type="radio" name="val10" id="Less	   than	   once	   a	   week" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Less	   than	   once	   a	   week">Less	   than	   once	   a	   week</label>
+                <br>
+                <input class="form-check-input" value="0" type="radio" name="val10" id="Never" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Never">Never</label>
+                </div>
+                </div>
+                <br>
+                <label for="val11" style="font-size:14px;color:black;font-weight:700;margin:5px;">Age</label>
+                <input type="number" class="toolinput form-control"name="val11" placeholder="age in months" style=" background:white;border:1px solid #CACFD2 ;
+                border-radius:40px;padding:18px;font-size:14px;color:black;margin-bottom:10px;"  required>
+
+                <br>
+                <label for="val12" style="font-size:14px;color:black;font-weight:700;margin:4px;">Gender</label>
+                <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+                <div class="form-check">
+                <input class="form-check-input" value="1" type="radio" name="val12" id="male"checked >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="male">Male</label>
+                <br>
+                <input class="form-check-input" value="0" type="radio" name="val12" id="female" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="female">Female</label>
+                </div>
+                </div>
+
+                <br>
+
+                <label for="val13" style="font-size:14px;color:black;font-weight:700;margin:4px;">Jaundice</label>
+                <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+                <div class="form-check">
+                <input class="form-check-input" value="1" type="radio" name="val13" id="male"checked >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="male">Yes</label>
+                <br>
+                <input class="form-check-input" value="0" type="radio" name="val13" id="female" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="female">No</label>
+                </div>
+                </div>
+
+                <br>
+                <label for="val14" style="font-size:14px;color:black;font-weight:700;margin:4px;">Family member with Autism Spectrum Disorder</label>
+                <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+                <div class="form-check">
+                <input class="form-check-input" value="1" type="radio" name="val14" id="male"checked >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="male">Yes</label>
+                <br>
+                <input class="form-check-input" value="0" type="radio" name="val14" id="female" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="female">No</label>
+                </div>
+                </div>
+
+                <br>
+                <label for="val15" style="font-size:14px;color:black;font-weight:700;margin:4px;">Who have taken the test?</label>
+                <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+                <div class="form-check">
+                <input class="form-check-input" value="1" type="radio" name="val15" id="male"checked >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="male">Family Member</label>
+                <br>
+                <input class="form-check-input" value="0" type="radio" name="val15" id="female" >
+                <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="female">Healthcare Professional</label>
+                </div>
+                </div>
+                <br>
+    
+    
+
+            <div class="text-center">
+            <button type="submit" value="Submit" class="btn btn-outline-primary" style="border-radius:50px;font-weight:600;border-width:2px;font-size:15px;"> Get Results <i class="bi bi-chevron-double-right"></i></button>
+            <div class="text-center">
+                <br>
+                <button type="button" onclick="window.location.href='http://localhost:8000/healthcareexperts/?specialization=ASD'" class="btn btn-primary" style="margin-top:10px;">Contact Specialist</button>
+              </div>
+           </div>
+           </form>
+           {% endif %}
+           <br><br>
+
+    </div>
+</div>
+{% endblock content %}

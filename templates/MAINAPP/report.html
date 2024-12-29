@@ -1,0 +1,35 @@
+{%  extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+<br><br>
+<div class="col-lg-6 container">
+  <p style="font-size:22px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;text-align:center;" >Report a Problem</p>
+  <br>
+  <div style="padding:30px; border:1px solid #e6e6e6 ">
+    <form class=""  method="POST" enctype="multipart/form-data" action ="{% url 'report' %}">
+      {% csrf_token %}
+      <label for="id_problem" style="font-size:13px;font-weight:700;margin:5px;color:black;">Where the problem had occured ?</label>
+      <input type="text" class="form-control shadow-none" id ="id_problem" name="problem"  style="border:0px;border-bottom:1px solid #CACFD2;border-radius:0px;font-size:13px;color:black;font-weight:500;margin-bottom:10px;" required>
+      <br>
+      <label for="id_problem_description" style="font-size:13px;font-weight:700;margin:5px;color:black;">Briefly explain what's not working</label>
+      <div class="text-center">
+      <textarea class="form-control" name="problem_description"  id="id_problem_description" style="width:100%;height:80px;font-size:12px;padding:10px;resize: none;border-radius:10px;" required></textarea>
+      </div>
+      <br>
+      <label for="id_problem_image" style="font-size:13px;font-weight:700;margin:5px;color:black;">Snapshot of the problem if any ?</label>
+      <input type="file" class="form-control shadow-none"  name="problem_image" accept="image/*" id="id_problem_image"  style="border:0px;font-size:12px;font-family: 'Roboto', sans-serif;background:transparent">
+      <br>
+      {% for message in messages %}
+        <p style="text-align:center;color:green;font-size:13px">{{message}}</p>
+      {% endfor %}
+      <div class="text-center">
+        <button type="submit" class="btn btn-outline-primary" style="border-radius:50px;font-weight:400;font-size:14px;border-width:1px;padding:4px 12px 4px 12px">Report <i class="bi bi-chevron-double-right"></i> </button>
+      </div>
+      </form>
+
+  </div>
+
+</div>
+<br><br>
+
+{% endblock content %}

@@ -1,0 +1,274 @@
+{%  extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+
+<div class="bground1">
+<div class="container">
+  <br>
+  <p style="text-align:right;"><a  href="{% url 'report'  %}" style="font-size:13px;font-weight:400;font-family: 'Roboto', sans-serif;">Report a Problem <i class="bi bi-chevron-right"></i></a></p>
+          {% if output %}
+          <br>
+          <div class="" style="width:100%;border:1px solid #CACFD2;padding:20px">
+          <p style="text-align:center;font-size:18px;color:black;font-weight:500;font-family: 'Roboto', sans-serif;margin-bottom:5px;">BMI : {{bmi}}</p>
+          {% if bmi >= 30 %}
+          <p style="text-align:center;font-size:12px;color:#2478de;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:5px;">Weight Status : 	Obese</p>
+          {% elif bmi >= 24.9 and bmi < 30 %}
+          <p style="text-align:center;font-size:12px;color:#2478de;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:5px;">Weight Status :  Overweight</p>
+          {% elif bmi >= 18.5 and bmi < 24.9 %}
+          <p style="text-align:center;font-size:12px;color:#2478de;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:5px;">Weight Status :  Healthy</p>
+          {% else %}
+          <p style="text-align:center;font-size:12px;color:#2478de;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:5px;">Weight Status :  Underweight</p>
+          {% endif %}
+          <hr>
+          <p style="text-align:center;font-size:12px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:5px;">As per the metrics provided by you we suggest you the below diet supplements.</p>
+
+          <div class="row">
+            {% for plan in plans %}
+            {% if vegfood %}
+            {% if plan.veg_food %}
+            {% if user_is_diabetic == "1" %}
+            {% if plan.diabetic %}
+            <div class="col-lg-4 col-md-6 col-sm-10 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+              <div class="" style="width:100%;border:1px solid #CACFD2;padding:10px;">
+                {% if plan.veg_food %}<label for="" style="color:#00ff00;font-size:13px;"><i class="bi bi-record-circle"></i></label> {% else %}<label for="" style="color:#ff0000;font-size:13px;"><i class="bi bi-record-circle"></i></label> {% endif %}
+                <p style="text-align:center;font-size:15px;color:black;font-weight:600;font-family: 'Roboto', sans-serif;margin-bottom:5px;">{{plan.food_name}}</p>
+                <hr style="margin:0px;">
+                <p style="text-align:center;font-size:11px;color:#909497;font-weight:400;font-family: 'Roboto', sans-serif;margin-top:5px;">Nutritional Contents ( per 100 g / 1000 mg)</p>
+                <p style="font-size:11px;color:black;font-weight:500;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;text-align:center;">Calories : {{plan.Calories}}  </p>
+
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;">Fats : {{plan.Fats}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Fats}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Proteins : {{plan.Proteins}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Proteins}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Carbohydrates : {{plan.Carb}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Carb}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Fibres : {{plan.Fibres}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Fibres}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                  <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Sugars : {{plan.Sugars}} g </p>
+                  <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                   <div class="progress-bar" role="progressbar" style="width:{{plan.Sugars}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+              </div>
+            </div>
+            {% endif %}
+            {% else %}
+            <div class="col-lg-4 col-md-6 col-sm-10 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+              <div class="" style="width:100%;border:1px solid #CACFD2;padding:10px;">
+                {% if plan.veg_food %}<label for="" style="color:#00ff00;font-size:13px;"><i class="bi bi-record-circle"></i></label> {% else %}<label for="" style="color:#ff0000;font-size:13px;"><i class="bi bi-record-circle"></i></label> {% endif %}
+                <p style="text-align:center;font-size:15px;color:black;font-weight:600;font-family: 'Roboto', sans-serif;margin-bottom:5px;">{{plan.food_name}}</p>
+                <hr style="margin:0px;">
+                <p style="text-align:center;font-size:11px;color:#909497;font-weight:400;font-family: 'Roboto', sans-serif;margin-top:5px;">Nutritional Contents ( per 100 g / 1000 mg)</p>
+                <p style="font-size:11px;color:black;font-weight:500;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;text-align:center;">Calories : {{plan.Calories}}  </p>
+
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;">Fats : {{plan.Fats}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Fats}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Proteins : {{plan.Proteins}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Proteins}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Carbohydrates : {{plan.Carb}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Carb}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Fibres : {{plan.Fibres}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Fibres}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                  <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Sugars : {{plan.Sugars}} g </p>
+                  <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                   <div class="progress-bar" role="progressbar" style="width:{{plan.Sugars}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% else %}
+            {% if user_is_diabetic == "1" %}
+            {% if plan.diabetic %}
+            <div class="col-lg-4 col-md-6 col-sm-10 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+              <div class="" style="width:100%;border:1px solid #CACFD2;padding:10px;">
+                {% if plan.veg_food %}<label for="" style="color:#00ff00;font-size:13px;"><i class="bi bi-record-circle"></i></label> {% else %}<label for="" style="color:#ff0000;font-size:13px;"><i class="bi bi-record-circle"></i></label> {% endif %}
+                <p style="text-align:center;font-size:15px;color:black;font-weight:600;font-family: 'Roboto', sans-serif;margin-bottom:5px;">{{plan.food_name}}</p>
+                <hr style="margin:0px;">
+                <p style="text-align:center;font-size:11px;color:#909497;font-weight:400;font-family: 'Roboto', sans-serif;margin-top:5px;">Nutritional Contents ( per 100 g / 1000 mg)</p>
+                <p style="font-size:11px;color:black;font-weight:500;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;text-align:center;">Calories : {{plan.Calories}}  </p>
+
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;">Fats : {{plan.Fats}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Fats}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Proteins : {{plan.Proteins}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Proteins}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Carbohydrates : {{plan.Carb}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Carb}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Fibres : {{plan.Fibres}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Fibres}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                  <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Sugars : {{plan.Sugars}} g </p>
+                  <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                   <div class="progress-bar" role="progressbar" style="width:{{plan.Sugars}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+              </div>
+            </div>
+            {% endif %}
+            {% else %}
+            <div class="col-lg-4 col-md-6 col-sm-10 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+              <div class="" style="width:100%;border:1px solid #CACFD2;padding:10px;">
+                {% if plan.veg_food %}<label for="" style="color:#00ff00;font-size:13px;"><i class="bi bi-record-circle"></i></label> {% else %}<label for="" style="color:#ff0000;font-size:13px;"><i class="bi bi-record-circle"></i></label> {% endif %}
+                <p style="text-align:center;font-size:15px;color:black;font-weight:600;font-family: 'Roboto', sans-serif;margin-bottom:5px;">{{plan.food_name}}</p>
+                <hr style="margin:0px;">
+                <p style="text-align:center;font-size:11px;color:#909497;font-weight:400;font-family: 'Roboto', sans-serif;margin-top:5px;">Nutritional Contents ( per 100 g / 1000 mg)</p>
+                <p style="font-size:11px;color:black;font-weight:500;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;text-align:center;">Calories : {{plan.Calories}}  </p>
+
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;">Fats : {{plan.Fats}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Fats}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Proteins : {{plan.Proteins}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Proteins}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Carbohydrates : {{plan.Carb}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Carb}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Fibres : {{plan.Fibres}} g </p>
+                <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                 <div class="progress-bar" role="progressbar" style="width: {{plan.Fibres}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                  <p style="font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:2px;margin-top:10px;">Sugars : {{plan.Sugars}} g </p>
+                  <div class="progress" style="border-radius:30px;margin-left:auto;margin-right:auto;padding:0px;height:4px;">
+                   <div class="progress-bar" role="progressbar" style="width:{{plan.Sugars}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+          </div>
+          </div>
+          {% else %}
+          <br>
+          <div class="row" style="background-color:#F5F5F5;border-radius:20px;" >
+            <div class="col-lg-4 col-md-12"style="border-radius:20px;padding:10px;margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;background-image:url({% static 'images/img6.jpg'%});background-size:cover;background-repeat: no-repeat;background-attachment:scroll;background-position:center;padding:10px;" >
+              <hr>
+             <p style="text-align:center;font-size:60px;color:white;font-weight:600;font-family: 'Roboto', sans-serif;margin-bottom:5px;">MediTrack Diet Planner.</p>
+            </div>
+            <div class="col-lg-8" style="padding:6%;">
+              <div class="row">
+
+              <div class="col-lg-10 col-md-11" style="display:flex;flex-wrap:wrap;padding:10px;">
+                <p style="text-align:center;font-size:20px;color:black;font-weight:500;font-family: 'Roboto', sans-serif;margin-bottom:5px;">Let's get started</p>
+
+                <p style="color:#4F4F4F ;font-size:11px;font-family: 'Roboto', sans-serif;">We brought you the MediTrack diet planner, providing the diet supplement suggestions based on the health metrics provided by you. Integrated with AI based algorithms, providing the results within seconds. Let's get started now.</p>
+
+              </div>
+
+              <div class="col-lg-12"style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;" >
+                <div class="" style="width:100%;">
+                    <hr>
+                  <p style="text-align:center;font-size:11px;color:black;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:5px;">Provide us your health metrics below.</p>
+
+                  <form method="post" enctype="multipart/form-data" action ="{% url 'diet_plan_result' %}">
+                  {% csrf_token %}
+
+                     <div class="row">
+                       <div class="col-lg-6" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+                         <div style="width:100%">
+                           <label for="val1" style="font-size:14px;color:black;font-weight:700;margin:5px;">Age</label>
+                           <input type="number" class="toolinput form-control"name="val1" placeholder="age in years" style="background:transparent;border:1px solid #A6ACAF;
+                           border-radius:40px;padding:18px;font-size:13px;color:black;margin-bottom:10px;"  required>
+                           <label for="val2" style="font-size:14px;color:black;font-weight:700;margin:4px;margin-bottom:2px;">Gender</label>
+                           <div class="" style="background:transparent;">
+                           <div class="form-check">
+                           <input class="form-check-input" value="1" type="radio" name="val2" id="male"checked >
+                           <label style="font-size:12px;color:black;font-weight:400;"class="form-check-label"  for="male">Male</label>
+                           <br>
+                           <input class="form-check-input" value="0" type="radio" name="val2" id="female" >
+                           <label style="font-size:12px;color:black ;font-weight:400;" class="form-check-label" for="female">Female</label>
+                           </div>
+                           </div>
+
+                         </div>
+                       </div>
+                       <div class="col-lg-6" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+                         <div style="width:100%">
+                           <label for="val3" style="font-size:14px;color:black;font-weight:700;margin:5px;">Height</label>
+                           <input type="number" step="any" class="toolinput form-control"name="val3" placeholder="height in meter" style="background:transparent;border:1px solid #A6ACAF;
+                           border-radius:40px;padding:18px;font-size:13px;color:black;margin-bottom:10px;"  required>
+                           <label for="val4" style="font-size:14px;color:black;font-weight:700;margin:5px;">Weight</label>
+                           <input type="number" step="any" class="toolinput form-control"name="val4" placeholder="weight in kg" style="background:transparent;border:1px solid #A6ACAF;
+                           border-radius:40px;padding:18px;font-size:13px;color:black;margin-bottom:10px;"  required>
+
+                         </div>
+                       </div>
+                     </div>
+                     <div class="" style="border:1px solid #A6ACAF;padding:10px;border-radius:15px;">
+                       <label for="val5" style="font-size:14px;color:black;font-weight:700;margin:4px;margin-bottom:2px;">Are you   Diabetic ?</label>
+                       <div class="" style="background:transparent;">
+                       <div class="form-check">
+                       <input class="form-check-input" value="0" type="radio" name="val5" id="dno"checked >
+                       <label style="font-size:12px;color:black;font-weight:400;"class="form-check-label"  for="dno">No</label>
+                       <br>
+                       <input class="form-check-input" value="1" type="radio" name="val5" id="dyes" >
+                       <label style="font-size:12px;color:black ;font-weight:400;" class="form-check-label" for="dyes">Yes</label>
+                       </div>
+                       </div>
+
+                     </div>
+                     <br>
+                     <div class="form-check text-right">
+                       <input class="form-check-input" type="checkbox" value="True" name="veg_only"id="id_veg_only">
+                       <label style="font-size:13px;font-weight:400;font-family: 'Roboto', sans-serif;color:#00C809  "class="form-check-label" for="id_veg_only"> Veg diet only &nbsp &nbsp</label>
+                     </div>
+                  <div class="text-center">
+                  <br>
+                  <button type="submit" value="Submit" class="btn btn-outline-primary" style="border-radius:50px;font-weight:600;border-width:2px;font-size:13px;"> Get Results <i class="bi bi-chevron-double-right"></i></button>
+              
+                  <div class="text-center">
+                    <br>
+                    <button type="button" onclick="window.location.href='http://localhost:8000/healthcareexperts/?specialization=Diet+and+Nutrition'" class="btn btn-primary" style="margin-top:10px;">Contact Specialist</button>
+                  </div>
+                 </div>
+                 <br>
+                 </form>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          <div class="text-center" style="padding:40px;">
+            <p  style="text-align:center;padding:0px;font-size:13px;color:gray;font-weight:400;font-family: 'Roboto', sans-serif;">Your feedback is important and it help us to improve our features, please share your experience with us. </p>
+            <a class="btn btn-outline-primary" href="{% url 'rating' %}"style="border-radius:30px;border-width:1px;font-size:13px;margin:auto;font-weight:400;padding:4px 8px 4px 8px">Rate Us <i class="bi bi-chevron-double-right"></i></a>
+          </div>
+        <br><br>
+
+  </div>
+</div>
+
+
+{% endblock content %}

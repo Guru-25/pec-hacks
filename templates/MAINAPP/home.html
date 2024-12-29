@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Shippori+Antique+B1&family=Barlow+Semi+Condensed:wght@100;200;300;400;500;600;700&family=Playfair+Display&family=Abril+Fatface&family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Italiana&family=Rasa:wght@300;400;500;600;700&family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Codystar:wght@300;400&family=Comfortaa:wght@300;400;500;600;700&family=Righteous&family=Sen:wght@400;700;800&display=swap"
+    rel="stylesheet">
+</head>
+
+<body onload="load()"> <!-- onload="load()" -->
+  <div id="loading"
+    style="width:100%;height:100vh;z-index:40000;background:#fff url({% static 'images/load2.svg'%}) no-repeat center;position:fixed;">
+    <br>
+    <p
+      style="text-align:center;font-size:16px;font-weight:700;color:black;margin:6px;font-family: 'Shippori Antique B1', sans-serif;">
+      MediTrack</p>
+
+  </div>
+
+
+  <nav class="navbar  navbar-expand-lg navbar-light fixed-top navbackdrop"
+    style="justify-content:center;background:rgba(255,255,255,0.8);border-bottom:1px solid #D7DBDD  ;margin-right:auto;margin-left:auto;">
+    <img class="" src="{% static 'images/logo4.png'%}" alt="" style="width:33px;">
+  </nav>
+
+
+  <nav class=" navbar  navbar-expand-lg navbar-light"
+    style="padding:2px;background:white; margin-right:auto;margin-left:auto;padding:53px 15px 2px 15px;border-bottom:1px solid #D7DBDD  ;">
+
+    <button style="font-size:12px;" class="navbar-toggler" type="button" data-toggle="collapse"
+      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <ul class="navbar-nav" style="width:100%;">
+        <li class="nav-item "><a class="nav-link navbttn" href="{% url 'home' %}"
+            style="font-size: 18px;color:#0074FF;padding:2px;"><i class="bi bi-house-door-fill"></i> </a></li>
+        <li class="nav-item "><a class="nav-link navbttn" href="{% url 'diagnosistools' %}"
+            style="font-size: 13px;font-family: 'Roboto', sans-serif;color:#1C2833;"><b
+              style="font-weight:700;">Specialized Diagnosis</b></a></li>
+        <li class="nav-item "><a class="nav-link navbttn" href="{% url 'diet_plan' %}"
+            style="font-size: 13px;font-family: 'Roboto', sans-serif;color:#1C2833;"><b style="font-weight:700;">Diet
+              Planner</b></a></li>
+        <li class="nav-item "><a class="nav-link navbttn" href="{% url 'mentalhealth' %}"
+            style="font-size: 13px;font-family: 'Roboto', sans-serif;color:#1C2833;"><b style="font-weight:700;">Mental
+              Health</b></a></li>
+        <li class="nav-item "><a class="nav-link navbttn" href="{% url 'ASDdiagnosis' %}"
+            style="font-size: 13px;font-family: 'Roboto', sans-serif;color:#1C2833;"><b style="font-weight:700;">ASD
+              Diagnosis</b></a></li>
+        <li class="nav-item "><a class="nav-link navbttn" href="{% url 'article' %}"
+            style="font-size: 13px;font-family: 'Roboto', sans-serif;color:#1C2833;"><b
+              style="font-weight:700;">Blog</b></a></li>
+        <li class="nav-item "><a class="nav-link navbttn" href="{% url 'about' %}"
+            style="font-size: 13px;font-family: 'Roboto', sans-serif;color:#1C2833;"><b
+              style="font-weight:700;">About</b></a></li>
+        <li class="nav-item "><a class="nav-link navbttn" href="{% url 'rating' %}"
+            style="font-size: 13px;font-family: 'Roboto', sans-serif;color:#1C2833;"><b
+              style="font-weight:700;">Rating</b></a></li>
+        <li class="nav-item "><a class="nav-link navbttn" href="{% url 'healthcareexperts' %}"
+            style="font-size: 12.5px;font-family: 'Roboto', sans-serif;color:#1C2833;"><b
+              style="font-weight:700;">Contact Experts</b></a></li>
+      </ul>
+      <div style="margin-left:auto">
+        <form class="form-inline" method="get" action="/search">
+          <div class="input-group" style="border-radius:50px;padding:0px;width:300px">
+            <input class="form-control searchbar" type="search" name="query" id="query" placeholder="Search here"
+              style="background:transparent;border:0px;padding:10px;margin:0px;font-size:11px;border-radius:50px;border:1px solid #909497;color:black;">
+            <span class="input-group-append">
+              <button class="searchbutton" type="submit"
+                style="border-radius:50px;border:0px;font-size: 15px;background:transparent;margin-right:10px;margin-left:5px;color:#626567;"><i
+                  class="bi bi-search"></i></button>
+            </span>
+          </div>
+        </form>
+
+      </div>
+    </div>
+    <div style="margin-left:auto;">
+      {% if user.is_authenticated %}
+
+      <a class=" navbttn" href="{% url 'accounts' %}" style="font-size: 13px;color:#1C2833;text-decoration:none;"><b
+          style="font-weight:700;"><i class="bi bi-person-circle"></i> Account &nbsp</b></a>
+      <a class="btn btn-outline-primary" href="{% url 'logout' %}"
+        style="border-radius:30px;border-width:1px;font-size:14px;margin:auto;font-weight:600;padding:4px 8px 4px 8px">Logout</a>
+
+      {% else %}
+      <label class="nav-item "><a class="nav-link navbttn" href="{% url 'user_login' %}"
+          style="font-size: 14px;color:black;"><i class="bi bi-person-circle"></i> <b style="font-weight:700;">Login
+          </b></a></label>
+      <a class="btn btn-primary" href="{% url 'register' %}"
+        style="border-radius:30px;font-size:12px;margin:auto;margin-right:10px;font-weight:600;padding:4px 10px 4px 10px;">Register</a>
+
+      {% endif %}
+    </div>
+
+  </nav>
+  {% block content %}
+  <div class="chatbot-icon" id="chatbotIcon">
+    <img src="{% static 'images/bot.png'%}" alt="Bot Icon"> <!-- Replace with your bot image -->
+  </div>
+
+  <!-- Chatbot Container -->
+  <div class="chatbot-container" id="chatbotContainer">
+    <div id="chatbox">
+      <div id="messages"></div>
+      <div class="input-container">
+        <input type="text" id="userInput" placeholder="Ask your health question...">
+        <button id="sendBtn">Send</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="bground1">
+    <div class="sharp"
+      style="background-image:url({% static 'images/img16.jpg'%});background-size:cover;background-repeat: no-repeat;background-attachment:fixed;background-position:center;width:100%;">
+      <br><br>
+      <div class="container" style="margin-left:auto;margin-right:auto;position:relative;">
+        <p
+          style="font-size:60px;font-weight:500;color:white;font-family: 'Roboto', sans-serif;text-align:center;margin:0px">
+          MediTrack</ <div class="row">
+        <div class="col-xl-9 col-lg-12 col-md-12"
+          style="display:flex;flex-wrap:wrap;margin-left:auto;margin-right:auto;">
+          <div class="" style="width:100%;">
+            <div class="row" data-aos="zoom-in">
+              <div class="col-lg-4 col-md-6 col-sm-6 col-12 text-center"
+                style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+                <div class=""
+                  style="width:100%;padding:30px;background:rgb(0, 0, 0);border-radius:20px;border:1px solid rgb(41, 41, 41);">
+                  <p style="color:white;font-size:25px;"><i class="bi bi-bag-plus"></i></p>
+                  <p style="color:white;font-size:16px;font-weight:500;margin:0px;font-family: 'Roboto', sans-serif;">
+                    Accessible & Affordable Healthcare</p>
+                  <hr color="#191919">
+                  <p class="statsgradient" style="color:rgb(235, 235, 235);font-size:11px;font-weight:400;margin:0px;">
+                    Through a comprehensive range of diagnostic tools for NCDs, including CVD, diabetes, liver disease,
+                    and brain tumors, MediTrack aims to improve health outcomes and contribute to the reduction of
+                    mortality rates.</p>
+                  <p style="text-align:center;"><a href="{% url 'diagnosistools'  %}"
+                      style="text-align:center;font-size:12px;border:0px;">NCD Diagnosis Tools <i
+                        class="bi bi-chevron-right"></i></a></p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-6 col-12 text-center"
+                style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+                <div class=""
+                  style="width:100%;padding:30px;background:black;border-radius:20px;border:1px solid rgb(41, 41, 41);">
+                  <p style="color:white;font-size:25px;"><i class="bi bi-cup-straw"></i></p>
+                  <p style="color:white;font-size:16px;font-weight:500;margin:0px;font-family: 'Roboto', sans-serif;">
+                    Personalized Nutrition for Optimal Health</p>
+                  <hr color="#191919">
+                  <p class="statsgradient" style="color:rgb(235, 235, 235);font-size:11px;font-weight:400;margin:0px;">
+                    MediTrack's AI-powered diet planner tailors meal plans to individual needs, promoting well-rounded
+                    nutrition for improved overall health and vitality.</p>
+                  <p style="text-align:center;"><a href="{% url 'diet_plan'  %}"
+                      style="text-align:center;font-size:12px;border:0px;">AI Diet Planner <i
+                        class="bi bi-chevron-right"></i></a></p>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 col-sm-6 col-12 text-center"
+                style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+                <div class=""
+                  style="width:100%;padding:30px;background:black;border-radius:20px;border:1px solid rgb(41, 41, 41);">
+                  <p style="color:white;font-size:25px;"><i class="bi bi-emoji-smile"></i></p>
+                  <p style="color:white;font-size:16px;font-weight:500;margin:0px;font-family: 'Roboto', sans-serif;">
+                    Integrating Mental Health and ASD Diagnosis</p>
+                  <hr color="#191919">
+                  <p class="statsgradient" style="color:rgb(235, 235, 235);font-size:11px;font-weight:400;margin:0px;">
+                    Recognizing the importance of mental health, MediTrack also offers a mental health & an Autism
+                    Spectrum Disorder diagnosis tool, meticulously engineered utilizing state-of-the-art technologies
+                    such as scikit-learn & TensorFlow</p>
+                  <label style="text-align:center;">
+                    <a href="{% url 'mentalhealth'  %}" style="text-align:center;font-size:12px;border:0px;">Mental
+                      Health <i class="bi bi-chevron-right"></i></a>
+                    <a href="{% url 'ASDdiagnosis'  %}" style="text-align:center;font-size:12px;border:0px;">ASD
+                      Diagnosis <i class="bi bi-chevron-right"></i></a></label>
+
+                </div>
+              </div>
+              <div class="col-lg-5 col-md-6 col-sm-6 col-12"
+                style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+                <div class=""
+                  style="width:100%;padding:30px;background:black;border-radius:20px;border:1px solid rgb(41, 41, 41);">
+                  <p style="color:white;font-size:16px;font-weight:500;margin:0px;font-family: 'Roboto', sans-serif;">
+                    Empowering Health through Innovation</p>
+                  <hr color="#191919">
+                  <p class="statsgradient" style="color:rgb(235, 235, 235);font-size:11px;font-weight:400;margin:0px;">
+                    MediTrack harnesses the power of AI and machine learning to provide actionable insights and precise
+                    diagnostics, paving the way for more effective and targeted healthcare interventions. Our suite of
+                    advanced healthcare tools, revolutionizes the way we approach disease detection & diagnosis.</p>
+                  <label style="text-align:center;">
+                    <a href="{% url 'article'  %}" style="text-align:center;font-size:12px;border:0px;"> Blog <i
+                        class="bi bi-chevron-right"></i> </a>
+                    <a href="{% url 'healthcareexperts'  %}" style="text-align:center;font-size:12px;border:0px;">
+                      Contect Experts <i class="bi bi-chevron-right"></i></a> </label>
+                  <a href="{% url 'healthcheckup'  %}" style="text-align:center;font-size:12px;border:0px;"> Self
+                    Diagnosis <i class="bi bi-chevron-right"></i></a> </label>
+                </div>
+              </div>
+              <div class="col-lg-7 col-md-12 col-sm-12 col-12"
+                style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+                <div class="" style="width:100%;padding:0px;margin:0px">
+                  <video autoplay muted loop style="width:100%;border-radius:20px;margin:0px">
+                    <source src="{% static 'images/vid15.mp4'%}" type="video/mp4">
+                  </video>
+                  <p style="padding:10px;font-size:18px;font-weight:400;font-family: 'Roboto', sans-serif;color:white;text-align:center;margin-top:-30%"
+                    data-aos="fade-up">Your well-being is the driving force behind our commitment to excellence.</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+
+
+
+
+  <br>
+  <div class="container">
+    <div class="row col-lg-11" style="margin-left:auto;margin-right:auto;" data-aos="fade-in">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-10"
+        style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:1px;border-radius:50px;background:linear-gradient(to bottom ,rgba(23, 32, 42,0.15) 20% , #FFFFFF  70%,#FFFFFF  90%);margin-bottom:10px;">
+        <div class="" style="width:100%;padding:15px;background:white;border-radius:49px;">
+          <p
+            style="font-size:12px;font-weight:500;font-family: 'Roboto', sans-serif;color:black;margin:0px;text-align:center;">
+            Clinical Decision</p>
+          <p
+            style="font-size:25px;font-weight:500;font-family: 'Roboto', sans-serif;color:black;margin:0px;text-align:center;">
+            Support</p>
+          <hr style="margin-top:0px;">
+          <p style="font-size:12px;font-weight:500;font-family: 'Roboto', sans-serif;color:#585A5B;text-align:center;">
+            powered by specialized diagnosis algorithm designed to ease the tasks of doctors and specialists in decision
+            making. </p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 col-10"
+        style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:1px;border-radius:50px;background:linear-gradient(to top ,rgba(23, 32, 42,0.15) 20% , #FFFFFF  70%,#FFFFFF  90%);margin-bottom:10px;">
+        <div class="" style="width:100%;padding:15px;background:white;border-radius:49px;">
+          <p
+            style="font-size:12px;font-weight:500;font-family: 'Roboto', sans-serif;color:black;margin:0px;text-align:center;">
+            Process Results in </p>
+          <p
+            style="font-size:25px;font-weight:500;font-family: 'Roboto', sans-serif;color:black;margin:0px;text-align:center;">
+            Response Time</p>
+          <hr style="margin-top:0px;">
+          <p style="font-size:12px;font-weight:500;font-family: 'Roboto', sans-serif;color:#585A5B;text-align:center;">
+            with an average accuracy of 90%. Provide health metrics including risk score, medical suggestions & much
+            more. </p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 col-10"
+        style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:1px;border-radius:50px;background:linear-gradient(to bottom ,rgba(23, 32, 42,0.15) 20% , #FFFFFF  70%,#FFFFFF  90%);margin-bottom:10px;">
+        <div class="" style="width:100%;padding:15px;background:white;border-radius:49px;">
+          <p
+            style="font-size:12px;font-weight:500;font-family: 'Roboto', sans-serif;color:black;margin:0px;text-align:center;">
+            With</p>
+          <p
+            style="font-size:25px;font-weight:500;font-family: 'Roboto', sans-serif;color:black;margin:0px;text-align:center;">
+            Free Usage</p>
+          <hr style="margin-top:0px;">
+          <p style="font-size:12px;font-weight:500;font-family: 'Roboto', sans-serif;color:#585A5B;text-align:center;">
+            of all the available tools on MediTrack, provided with one tap solution, access anywhere anytime. </p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 col-10"
+        style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:1px;border-radius:50px;background:linear-gradient(to top ,rgba(23, 32, 42,0.15) 20% , #FFFFFF  70%,#FFFFFF  90%);margin-bottom:10px;">
+        <div class="" style="width:100%;padding:15px;background:white;border-radius:49px;">
+          <p
+            style="font-size:12px;font-weight:500;font-family: 'Roboto', sans-serif;color:black;margin:0px;text-align:center;">
+            Designed Using</p>
+          <p
+            style="font-size:25px;font-weight:500;font-family: 'Roboto', sans-serif;color:black;margin:0px;text-align:center;">
+            Powerful</p>
+          <hr style="margin-top:0px;">
+          <p style="font-size:12px;font-weight:500;font-family: 'Roboto', sans-serif;color:#585A5B;text-align:center;">
+            AI algorithms including random forest algorithm from scikit-learn , tensorflow and Support Vector Machine.
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+    <div class="row">
+      <div class="col-lg-6 col-md-10 col-sm-12 col-12"
+        style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;">
+        <div class="" style="width:100%;border:1px solid #CACFD2;padding:20px;border-radius:20px;margin-bottom:20px;"
+          data-aos="fade-in">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-10"
+              style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:20px;">
+              <div style="width:100%;padding:10px;" data-aos="zoom-in">
+                <p
+                  style="text-align:center;color:black;font-family:'Barlow Semi Condensed',sans-serif;font-size:50px;font-weight:600;margin-bottom:0px;">
+                  01</p>
+                <p style="text-align:center;font-size:15px;color:black;font-weight:600;margin:0px;">Diabetes Diagnosis
+                </p>
+                <hr>
+                <p style="text-align:center;font-size:11px;color:#626567;margin-bottom:10px;">Trained with random forest
+                  algorithm with an accuracy of 90.4%.</p>
+                <p style="text-align:center;"><a class="btn btn-outline-primary" href="{% url 'diabetes_risk' %}"
+                    style="border-radius:30px;border-width:1px;font-size:12px;margin:auto;font-weight:400;">Open Tool <i
+                      class="bi bi-chevron-double-right"></i></a></p>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-10"
+              style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:20px;">
+              <div style="width:100%;padding:10px;" data-aos="zoom-in">
+                <p
+                  style="text-align:center;color:black;font-family:'Barlow Semi Condensed',sans-serif;font-size:50px;font-weight:600;margin-bottom:0px;">
+                  02</p>
+                <p style="text-align:center;font-size:15px;color:black;font-weight:600;margin:0px;">CVD Diagnosis</p>
+                <hr>
+                <p style="text-align:center;font-size:11px;color:#626567;margin-bottom:10px;">Trained with random forest
+                  algorithm with an accuracy of 90.5%.</p>
+                <p style="text-align:center;"><a class="btn btn-outline-primary" href="{% url 'cvd_prediction' %}"
+                    style="border-radius:30px;border-width:1px;font-size:12px;margin:auto;font-weight:400;">Open Tool <i
+                      class="bi bi-chevron-double-right"></i></a></p>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-10"
+              style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:20px;">
+              <div style="width:100%;padding:10px;" data-aos="zoom-in">
+                <p
+                  style="text-align:center;color:black;font-family:'Barlow Semi Condensed',sans-serif;font-size:50px;font-weight:600;margin-bottom:0px;">
+                  03</p>
+                <p style="text-align:center;font-size:15px;color:black;font-weight:600;margin:0px;">Liver Diagnosis</p>
+                <hr>
+                <p style="text-align:center;font-size:11px;color:#626567;margin-bottom:10px;">Trained with random forest
+                  algorithm with an accuracy of 84%.</p>
+                <p style="text-align:center;"><a class="btn btn-outline-primary" href="{% url 'liver_diagnosis' %}"
+                    style="border-radius:30px;border-width:1px;font-size:12px;margin:auto;font-weight:400;">Open Tool <i
+                      class="bi bi-chevron-double-right"></i></a></p>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-10"
+              style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:20px;">
+              <div style="width:100%;padding:10px;" data-aos="zoom-in">
+                <p
+                  style="text-align:center;color:black;font-family:'Barlow Semi Condensed',sans-serif;font-size:50px;font-weight:600;margin-bottom:0px;">
+                  04</p>
+                <p style="text-align:center;font-size:15px;color:black;font-weight:600;margin:0px;">Brain Tumor</p>
+                <hr>
+                <p style="text-align:center;font-size:11px;color:#626567;margin-bottom:10px;">Trained with random forest
+                  algorithm with an accuracy of 92%.</p>
+                <p style="text-align:center;"><a class="btn btn-outline-primary" href="{% url 'detect_brain_tumor' %}"
+                    style="border-radius:30px;border-width:1px;font-size:12px;margin:auto;font-weight:400;">Open Tool <i
+                      class="bi bi-chevron-double-right"></i></a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-10 col-sm-12 col-12"
+        style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;margin-bottom:20px;" data-aos="fade-in">
+        <div class="" style="width:100%;background:black;padding:20px;border-radius:20px;">
+          <br>
+          <p style="text-align:center;font-size:35px;font-weight:500;font-family: 'Roboto', sans-serif;color:white;">
+            Four Tools. One goal.</p>
+          <p class="col-lg-10"
+            style="margin-right:auto;margin-left:auto; font-size:12px;font-weight:400;font-family: 'Roboto', sans-serif;color:#CACFD2;text-align:center;">
+            Integrated with powerful specialized diagnosis tools with 90% of an average accuracy. These tools are
+            designed to ease the tasks of doctors and specialists in decision making. With the same measures used for
+            diagnosis these tools can predict the occurrence of diseases within seconds. </p>
+          <p style="text-align:center;"><a href="{% url 'diagnosistools'  %}"
+              style="text-align:center;border-radius:30px;font-size:16px;font-weight:500;border:0px;"> Get Started <i
+                class="bi bi-chevron-right"></i></a></p>
+          <video autoplay muted loop style="width:100%;margin-bottom:20px;">
+            <source src="{% static 'images/vid10.mp4'%}" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="" style="background-color:#F2F3F4;border-radius:20px;margin:15px">
+        <div class="row">
+          <div class="col-lg-6 col-md-12"
+            style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10%;" data-aos="fade-right">
+            <div class="" style="width:100%">
+              <p
+                style="font-size:18px;margin-bottom:0px;font-weight:500;color:#626567;font-family: 'Roboto', sans-serif;">
+                With scikit-learn</p>
+              <p style="font-size:35px;font-weight:500;color:black;font-family: 'Roboto', sans-serif;">Let AI determine
+                your diet plan.</p>
+              <p
+                style="font-size:11px;margin-bottom:0px;font-weight:400;color:black;font-family: 'Roboto', sans-serif;">
+                We offer diet plans based on your health status along with detailed analysis of diet nutritional value.
+              </p>
+              <br>
+              <p><a class="btn btn-outline-primary" href="{% url 'diet_plan' %}"
+                  style="border-radius:30px;border-width:1px;font-size:12px;margin:auto;font-weight:400;">Open<i
+                    class="bi bi-chevron-double-right"></i></a></p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;"
+            data-aos="fade-in">
+            <div class="" style="width:100%;padding:10% 20% 0 20%">
+              <img class="sharp" src="{% static 'images/img5.jpg'%}" alt=""
+                style="width:100%;border-radius:40px 40px 0px 0px;border-top:10px solid black;border-left:10px solid black;border-right:10px solid black;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <div class="row" style="margin:0px;margin-bottom:20px;" data-aos="fade-in">
+        <div class="col-lg-6 col-md-10 col-sm-12 col-12"
+          style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding: 20px;">
+          <div class="" style="padding:20px;">
+            <p
+              style="margin:0px;font-size:40px;font-weight:600;font-family: 'Roboto', sans-serif;color:rgb(117, 117, 117);">
+              Diagnosing</p>
+            <p style="font-size:25px;font-weight:400;font-family: 'Roboto', sans-serif;color:black">The <b
+                style="font-weight:500;">Autism Spectrum Disorder </b> in <br>Toddlers</p>
+            <p style="font-size:13px;margin-bottom:0px;font-weight:400;color:black;font-family: 'Roboto', sans-serif;">
+              Here you can test whether your toddler between (1-3 years) has ASD symptoms or not. Start your child's
+              assessment today to gain valuable insights and take proactive steps towards their well-being.</p>
+            <br>
+            <p><a class="btn btn-primary" href="{% url 'ASDdiagnosis' %}"
+                style="border-radius:30px;border-width:1px;font-size:12px;margin:auto;font-weight:400;">Diagnose ASD<i
+                  class="bi bi-chevron-double-right"></i></a></p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-5 col-sm-9"
+          style="margin-left:auto;margin-right:auto;margin-bottom:20px;display:flex;flex-wrap:wrap ;padding:5px;">
+          <div class="text-center" style="width:100%;border-radius:20px;padding:27px;background:rgb(230, 230, 230)">
+            <img class="text-center" src="{% static 'images/logo3.png'%}" alt="" style="width:35px;margin-bottom:3px;">
+            <p style="font-size:14px;text-align:center;color:#181818;">Welcome to our comprehensive ASD diagnosis tool.
+            </p>
+            <hr>
+            <p style="font-size:12px;text-align:center;color:#494949;">We understand the importance of early detection
+              and intervention for children with ASD, and our cutting-edge machine learning technology aims to assist
+              parents, caregivers, and healthcare professionals in identifying potential ASD traits in children.</p>
+            <p style="font-size:20px;text-align:center;color:black;font-weight:500;margin:0px;">95.9</p>
+            <p style="font-size:13px;text-align:center;color:black;font-weight:500;margin:0px;">% Accurate</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-5 col-sm-9"
+          style="margin-bottom:20px;margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;display:flex;flex-wrap:wrap ;">
+          <div class="" style="width:100%;border-radius:20px;padding:0px;background:rgb(12, 12, 12)">
+            <img class="sharp" src="{% static 'images/ASD.jpg'%}" alt="" style="width:100%;border-radius:20px;">
+            <p style="font-size:20px;font-weight:500;font-family: 'Roboto', sans-serif;color:white;text-align:center;margin-top:-5%"
+              data-aos="fade-up">You’re Worthy.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-lg-12 col-md-12 col-sm-12 col-12"
+        style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;margin-top:20px;" data-aos="fade-in">
+        <div class="" style="width:100%;background:black;padding:10%;border-radius:20px;">
+          <div class="row">
+            <div class="col-lg-7 col-md-12 col-sm-12 col-12"
+              style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+              <div class="row">
+                <div class="col-lg-12"
+                  style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:5px;">
+                  <div class="" style="width:100%;padding:5px;" data-aos="fade-down">
+                    <p
+                      style="font-size:25px;font-weight:500;font-family: 'Roboto', sans-serif;color: #e6e6e6;margin:0px;">
+                      Mental Health</p>
+                    <p
+                      style="font-size:25px;font-weight:500;font-family: 'Roboto', sans-serif;color:#666666;margin:0px;">
+                      We are here to Listen.</p>
+                    <p class="col-lg-10"
+                      style="padding:0px;font-size:12px;font-weight:400;font-family: 'Roboto', sans-serif;color:#666666;margin:0px;">
+                      If you provide us your information and are in need of support, we will do our best to respond.
+                      Please go with our free mental health test. With embedded AI algorithm, we will provide you the
+                      feedback within a few seconds.</p>
+                    <br>
+                    <a class="btn btn-outline-primary" href="{% url 'mentalhealth'  %}"
+                      style="border-radius:30px;font-size:15px;border-width:2px;font-weight:700;margin-bottom:30px;">Take
+                      the Test</a>
+                  </div>
+
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-9"
+                  style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:5px;">
+                  <div class=""
+                    style="width:100%;border:2px solid #121921;border-radius:20px;padding:35px;background:rgba(46, 64, 83 ,0.2);"
+                    data-aos="fade-up">
+                    <div class="" style="background:black;padding:10px;">
+                      <br>
+                      <p
+                        style="padding:0px;font-size:14px;font-weight:500;font-family: 'Roboto', sans-serif;color:white;text-align:center;">
+                        Powered by.</p>
+                      <img src="{% static 'images/TF.png'%}" alt="" style="width:100%;border-radius:20px;">
+                      <p
+                        style="padding:0px;font-size:11px;font-weight:400;font-family: 'Roboto', sans-serif;color:#8c8c8c;text-align:center;">
+                        Embedded AI Model with tensorflow & NLP.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-9"
+                  style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap ;padding:5px;"
+                  data-aos="fade-up">
+                  <div class="" style="width:100%;border:2px solid #121921;border-radius:20px;padding:35px;">
+                    <div class="" style="border:1px solid #4d4dff;padding:10px;">
+                      <p style="font-size:14px;color:white;font-weight:500;">Mental Health Score</p>
+                      <p
+                        style="padding:0px;font-size:11px;font-weight:400;font-family: 'Roboto', sans-serif;color:#8c8c8c;margin-bottom:0px;">
+                        On the basis of your information, we provide mental health score on a scale of 0 to 100.</p>
+                    </div>
+                    <br>
+                    <div class="" style="border:1px solid #121921;padding:10px;">
+                      <p style="font-size:14px;color:white;font-weight:500;">Suggestions</p>
+                      <p
+                        style="padding:0px;font-size:11px;font-weight:400;font-family: 'Roboto', sans-serif;color:#8c8c8c;margin-bottom:0px;">
+                        Based on your score we provide a set of suggestions along with necessary helplines for poor
+                        mental health.</p>
+                    </div>
+
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-9 col-12"
+              style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+              <div class="" style="width:100%;border:2px solid #121921;border-radius:20px;" data-aos="fade-left">
+                <img class="" src="{% static 'images/img1.jpg'%}" alt=""
+                  style="height:100%;width:100%;border-radius:20px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="container">
+
+    <div class="row" style="margin-bottom:0px;">
+      <div class="col-lg-6 col-md-10 col-sm-12 col-12"
+        style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:15px;">
+        <div class="" style="width:100%" data-aos="fade-in">
+          <img class="sharp" src="{% static 'images/img3.jpg'%}" alt="" style="width:100%;border-radius:20px;">
+          <p style="font-size:25px;font-weight:600;font-family: 'Roboto', sans-serif;color:white;text-align:center;margin-top:-10%"
+            data-aos="fade-up">You’re in charge of you</p>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-10 col-sm-12 col-12"
+        style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:20px;" data-aos="fade-left">
+        <div class="" style="width:100%">
+          <p style="font-size:40px;font-weight:500;font-family: 'Roboto', sans-serif;color:#1a1a1a">Even more great
+            stuff.</p>
+          <div class="row">
+            <div class="col-lg-4 col-md-4"
+              style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:20px;">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12"
+              style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:20px;">
+              <div class="" style="width:100%">
+                <p style="font-size:20px;font-weight:500;font-family: 'Roboto', sans-serif;color:#1a1a1a">Presenting AI
+                  Self-Diagnosis</p>
+                <p style="font-size:11px;color:#626567;font-weight:400;font-family: 'Roboto', sans-serif;">Processed
+                  with the powerful AI model trained with SVM. Along with the disease prediction this tool also provide
+                  the medication suggestions and precautions corresponding to the disease.</p>
+                <p><a href="{% url 'healthcheckup'  %}"
+                    style="border-radius:30px;font-size:15px;font-weight:500;border:0px;">Diagnose Now <i
+                      class="bi bi-chevron-right"></i></a></p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;">
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-6"
+              style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:15px;padding-top:0px;">
+              <div class="" style="width:100%">
+                <p style="color:black;font-size:20px;font-weight:600;margin:0px;"><i class="fa fa-bolt"
+                    aria-hidden="true"></i></p>
+                <p style="font-size:14px;font-weight:600;font-family: 'Roboto', sans-serif;color:#1a1a1a;margin:0px">94%
+                  Accuracy</p>
+                <hr style="margin-top:3px;margin-bottom:3px;">
+                <p style="font-size:11px;color:#626567;font-weight:400;font-family: 'Roboto', sans-serif;margin:0px;">
+                  achieved in diagnosis with Support Vector Machine.</p>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-6"
+              style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:15px;padding-top:0px;">
+              <div class="" style="width:100%">
+                <p style="color:black;font-size:20px;margin:0px;"><i class="bi bi-bag-plus-fill"></i></p>
+                <p style="font-size:14px;font-weight:600;font-family: 'Roboto', sans-serif;color:#1a1a1a;margin:0px">40
+                  Plus</p>
+                <hr style="margin-top:3px;margin-bottom:3px;">
+                <p style="font-size:11px;color:#626567;font-weight:400;font-family: 'Roboto', sans-serif;margin:0px;">
+                  disease diagnosis with medication suggestions.</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" id="contactus">
+      <div class="col-lg-7 col-md-12 col-sm-12 col-12"
+        style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+        <div class="" style="width:100%;padding:20px">
+          <div class="" data-aos="fade-in">
+            <p style="font-size:25px;color:black;font-weight:600;font-family: 'Roboto', sans-serif;margin-bottom:4px">
+              Explore Blog</p>
+            <p class="col-lg-9"
+              style="padding:0px;font-size:12px;color:#626567;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:8px;">
+              The MediTrack brings to you the top healthcare Articles. Discover insights on common diseases, symptoms,
+              precautions, medications & more. </p>
+            <a href="{% url 'article'  %}"
+              style="background:transparent;font-size:15px;margin:auto;font-weight:500;border:0px;">Explore More <i
+                class="bi bi-chevron-right"></i></a>
+
+          </div>
+
+          <div class="row" style="margin-top:15px;" data-aos="fade-in">
+            {% for page in pages %}
+            {% if page.add_disease_to_home %}
+            <div class="col-lg-4 col-md-4 col-sm-6 col-6"
+              style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+              <div class=" flipcard" style="margin:0px;padding:5px;border-radius:20px;border:1px solid #CACFD2;">
+                <div class="flipcard-wrap">
+                  <div class="card card-front" style="width:100%;background:black;border-radius:15px;">
+                    <div class="card-body" style="padding:15px;">
+                      <p style="text-align:center;font-size:14px;color:white;font-weight:600;margin:0px;">{{
+                        page.disease_name}}</p>
+                      <p style="text-align:center;font-size:11px;color:#BFC9CA;">Posted on. {{ page.posted_on}}</p>
+                      <img src="{{ page.disease_imageURL }}" style="width:100%;padding:5px;border-radius:15px;">
+                    </div>
+                  </div>
+                  <div class="card card-back" style="background:black;">
+                    <div class="card-body" style="padding:15px;">
+                      <p style="text-align:center;font-size:11px;color:#BFC9CA;">{{ page.disease_caption}}</p>
+                      <a class="btn btn-outline-primary" data-product="{{ page.id }}"
+                        href="{% url 'read_article' page.id %}"
+                        style="border-radius:30px;border-width:2px;font-size:14px;margin:auto;font-weight:700;">Read <i
+                          class="bi bi-chevron-double-right"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-12 col-sm-12 col-12"
+        style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+        <br>
+        <div class="" style="width:100%;padding:20px;">
+          <div class="" style="padding:30px;border:1px solid #e2e6e9;" data-aos="fade-in">
+            <p
+              style="font-size:30px;color:#b6c0c8;font-weight:500;font-family: 'Roboto', sans-serif;margin-bottom:2px;text-align:center;">
+              Contact Us</p>
+            <p
+              style="text-align:center;padding:0px;font-size:12px;color:#b6c0c8;font-weight:400;font-family: 'Roboto', sans-serif;margin-bottom:8px;">
+              We'd love to hear from you, Feel free to contact us for any queries or suggestions. </p>
+
+
+            <form class="" method="POST" enctype="multipart/form-data" action="{% url 'home' %}">
+              {% csrf_token %}
+              <label for="id_reviewer_name" style="font-size:13px;font-weight:700;margin:5px;color:black;">Name</label>
+              <input type="text" class="form-control" id="id_reviewer_name" name="reviewer_name"
+                style="border:1px solid #CACFD2;border-radius:50px;font-size:13px;color:black;font-weight:500;margin-bottom:10px;"
+                required>
+              <label for="id_reviewer_email"
+                style="font-size:13px;font-weight:700;margin:5px;color:black;">Email</label>
+              <input type="email" class="form-control" id="id_reviewer_email" name="reviewer_email"
+                style="border:1px solid #CACFD2;border-radius:50px;font-size:13px;color:black;font-weight:500;margin-bottom:10px;"
+                required>
+              <label for="id_reviewer_message"
+                style="font-size:13px;font-weight:700;margin:5px;color:black;">Message</label><br>
+              <div class="text-center">
+                <textarea class="form-control" name="reviewer_message" id="id_reviewer_message"
+                  style="width:100%;height:70px;font-size:12px;padding:5px;"></textarea>
+              </div>
+              <br>
+              {% for message in messages %}
+              <p style="text-align:center;color:green;font-size:13px">{{message}}</p>
+              {% endfor %}
+              <div class="text-center">
+                <button type="submit" class="btn btn-outline-primary"
+                  style="border-radius:50px;font-weight:400;font-size:14px;border-width:1px;padding:4px 12px 4px 12px">Submit
+                  <i class="bi bi-chevron-double-right"></i> </button>
+              </div>
+            </form>
+          </div>
+          <br>
+          <p style="font-size:13px;font-weight:700;margin:5px;color:black;text-align:center;margin:0px;">OR</p>
+          <p
+            style="font-size:13px;color:#626567;font-weight:400;font-family: 'Roboto', sans-serif;margin:5px;text-align:center;margin:0px;">
+            Drop us a mail at </p>
+          <p style="font-size:13px;font-weight:400;color:#B6BBB9 ;font-family: 'Roboto', sans-serif;text-align:center;">
+            <a href="mailto:meditrack@gururaja.in">meditrack@gururaja.in</a></p>
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  {% endblock content %}
+
+  <div class="">
+    <div class="" style="background:rgba(222, 229, 237,0.4);padding:15px;">
+      <div class="text-center">
+        <img class="" src="{% static 'images/logo3.png'%}" alt="" style="width:45px;">
+
+      </div>
+      <p
+        style="text-align:center;font-size:22px;color:black ;font-weight:400;font-family: 'Roboto', sans-serif;text-align:center;margin:0px;margin-bottom:10px">
+        MediTrack</p>
+      <p class="col-lg-6 col-md-8"
+        style="text-align:center;font-size:11px;color:#626567 ;font-family: 'Roboto', sans-serif;text-align:center;margin:0px;margin-left:auto;margin-right:auto;">
+        MediTrack make it quick and easy for everyone. Designed to help users with free intelligent AI integrated tools.
+        The result is care that becomes more efficient, more affordable and ultimately more adaptable.</p>
+      <p
+        style="margin-top:5px;font-size:11px;font-weight:400;color:#B6BBB9 ;font-family: 'Roboto', sans-serif;text-align:center;">
+        <a href="mailto:meditrack@gururaja.in">meditrack@gururaja.in</a></p>
+
+      <hr>
+      <div class="row col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12"
+        style="margin-left:auto;margin-right:auto;margin-top:0px;">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6"
+          style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+          <div class="" style="width:100%;padding:20px;padding-top:0px;">
+            <p style="font-size:13px;color:black;font-weight:700;margin:2px;font-family: 'Roboto', sans-serif;">Quick
+              Links</p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'home' %}">Home</a></p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'article' %}">Health Blog</a></p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'about' %}">About Us</a></p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567;font-family: 'Roboto', sans-serif;"
+                href="{% url 'report' %}">Report a Problem</a></p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567;font-family: 'Roboto', sans-serif;"
+                href="{% url 'rating' %}">Rate Us</a></p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6"
+          style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+          <div class="" style="width:100%;padding:20px;padding-top:0px;">
+            <p style="font-size:13px;color:black;font-weight:700;margin:2px;font-family: 'Roboto', sans-serif;">
+              Specialized Tools</p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'diabetes_risk' %}">Diabetes Diagnosis</a></p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'cvd_prediction' %}">CVD Diagnosis</a></p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'liver_diagnosis' %}">Liver Diagnosis</a></p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'detect_brain_tumor' %}">Brain Tumor</a></p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6"
+          style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+          <div class="" style="width:100%;padding:20px;padding-top:0px;">
+            <p style="font-size:13px;color:black;font-weight:700;margin:2px;font-family: 'Roboto', sans-serif;">More AI
+              Tools</p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'diet_plan' %}">Diet Planner</a></p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'ASDdiagnosis' %}">ASD Diagnosis</a></p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'mentalhealth' %}">Mental Health </a></p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'healthcheckup' %}">AI Self-Diagnosis</a></p>
+
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6"
+          style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+          <div class="" style="width:100%;padding:20px;padding-top:0px;">
+            <p style="font-size:13px;color:black;font-weight:700;margin:2px;font-family: 'Roboto', sans-serif;">Accouns
+            </p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'accounts' %}">Profile & History</a></p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'user_login' %}">Log in</a></p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'register' %}">Register</a></p>
+            <p style="font-size:11px;margin:2px;"><a style="color:#626567 ;font-family: 'Roboto', sans-serif;"
+                href="{% url 'reset_password' %}">Password Reset</a></p>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+    <div class="" style="background:#090d10;padding:15px;">
+      <p
+        style="text-align:center;font-size:11px;color:#A6ACAF ;font-family: 'Roboto', sans-serif;text-align:center;margin:0px;">
+        © 2024 The SolCrafters. All rights reserved.</p>
+    </div>
+
+  </div>
+  <style media="screen">
+    .navbackdrop {
+      backdrop-filter: blur(8px);
+    }
+  </style>
+
+  <style media="screen">
+    .backdrop {
+      backdrop-filter: blur(8px);
+    }
+  </style>
+  <style>
+    body {
+      overflow-x: hidden;
+    }
+  </style>
+  <style>
+   .chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 80px; /* Icon size */
+    height: 80px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    animation: jump 2s infinite ease-in-out;
+}
+
+.chatbot-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* Jumping animation for the icon */
+@keyframes jump {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Chatbot Container */
+.chatbot-container {
+    display: none; /* Initially hidden */
+    position: fixed;
+    bottom: 120px; /* Adjusted to keep the chatbot container below the icon */
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: #f4f7fb;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+/* Chat Box */
+#chatbox {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Message Section */
+#messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+    max-height: 280px; /* Limit message box height */
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+/* User and Bot Messages Styling */
+#messages p {
+    margin: 5px 0;
+}
+
+#messages .user-message {
+    text-align: right;
+    background-color: #0074FF;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    max-width: 70%;
+    margin-left: auto;
+    margin-bottom: 10px;
+}
+
+#messages .bot-message {
+    text-align: left;
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 20px;
+    max-width: 70%;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+/* Input Area Styling */
+.input-container {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    background-color: #fff;
+}
+
+/* Text Input Field */
+#userInput {
+    width: 80%;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Input Field Focus */
+#userInput:focus {
+    border-color: #0074FF;
+}
+
+/* Send Button */
+#sendBtn {
+    padding: 10px 15px;
+    background-color: #0074FF;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* Send Button Hover Effect */
+#sendBtn:hover {
+    background-color: #005bb5;
+}
+
+#sendBtn:active {
+    background-color: #003f8e;
+}
+
+
+
+  </style>
+  <script type="text/javascript" src="{% static 'jscript/jmain.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"
+    integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"
+    integrity="sha512-d8F1J2kyiRowBB/8/pAWsqUl0wSEOkG5KATkVV4slfblq9VRQ6MyDZVxWl2tWd+mPhuCbpTB4M7uU/x9FlgQ9Q=="
+    crossorigin="anonymous"></script>
+  <script>
+    $('.counter').counterUp({
+      delay: 10,
+      time: 4000
+    });
+  </script>
+
+  <script>
+   const chatbotIcon = document.getElementById('chatbotIcon');
+const chatbotContainer = document.getElementById('chatbotContainer');
+const sendBtn = document.getElementById('sendBtn');
+const userInput = document.getElementById('userInput');
+const messages = document.getElementById('messages');
+
+// Make sure chatbot container is hidden initially (important for the first load)
+chatbotContainer.style.display = 'none';
+
+// Toggle chatbot visibility when icon is clicked
+chatbotIcon.addEventListener('click', function() {
+    // Toggle the display of the chatbot container
+    if (chatbotContainer.style.display === 'none' || chatbotContainer.style.display === '') {
+        chatbotContainer.style.display = 'block'; // Show the chatbox
+    } else {
+        chatbotContainer.style.display = 'none'; // Hide the chatbox
+    }
+});
+
+// Send the message when the send button is clicked
+sendBtn.addEventListener('click', function() {
+    const query = userInput.value.trim();
+    if (query !== '') {
+        // Display user's message
+        messages.innerHTML += `<p><strong>You:</strong> ${query}</p>`;
+
+        // Make the API call
+        fetch("{% url 'medical_chatbot' %}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: `query=${encodeURIComponent(query)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display the bot's reply
+            messages.innerHTML += `<p><strong>Bot:</strong> ${data.reply}</p>`;
+            userInput.value = ''; // Clear the input field
+            messages.scrollTop = messages.scrollHeight; // Auto-scroll to the bottom
+        })
+        .catch(error => console.error('Error:', error));
+    }
+});
+
+// Close chat when clicked outside of the chat container
+window.addEventListener('click', function(e) {
+    if (!chatbotContainer.contains(e.target) && !chatbotIcon.contains(e.target)) {
+        chatbotContainer.style.display = 'none'; // Hide the chatbot if clicking outside
+    }
+});
+
+  </script>
+
+  <script>
+    $(window).scroll(function () {
+      console.log($(window).scrollTop())
+      if ($(window).scrollTop() > 63) {
+        $('.navbar').addClass('navbar-fixed');
+      }
+      if ($(window).scrollTop() < 64) {
+        $('.navbar').removeClass('navbar-fixed');
+      }
+    });
+  </script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 3000,
+      offset: 100
+    });
+  </script>
+  <script>
+    var preloader = document.getElementById('loading');
+    function load() {
+      preloader.style.display = 'none';
+    }
+
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+    integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

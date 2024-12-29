@@ -1,0 +1,106 @@
+{%  extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+<br><br>
+<div class="bground1 container">
+  {% if user.is_authenticated %}
+  {% if created %}
+  <div class="container col-lg-10" style="padding:5%;box-shadow:0px 0px 25px 0px rgba(0, 0, 0,0.15);">
+    <div class="text-center">
+      <p style="font-size:16px;font-weight:600;color:black;font-family: 'Roboto', sans-serif;text-align:center;margin:10px;" >Update Medical Profile</p>
+      <hr>
+    </div>
+    <form class=""  method="POST" enctype="multipart/form-data" action ="">
+      {% csrf_token %}
+
+      <div class="row">
+        <div class="col-lg-6" style="padding:20px;">
+          <label for="gender" style="font-size:14px;color:black;font-weight:700;margin:4px;">Gender</label>
+          <div class="" style="background:white;padding:5px;padding-bottom:0px;">
+          <div class="form-check">
+          {% if profile.gender == "Male" %}
+          <input class="form-check-input" value="Male" type="radio" name="gender" id="male"checked >
+          <label style="font-size:13px;color:#566573 ;font-weight:400;"class="form-check-label"  for="male">Male</label>
+          <br>
+          <input class="form-check-input" value="Female" type="radio" name="gender" id="female" >
+          <label style="font-size:13px;color:#566573 ;font-weight:400;" class="form-check-label" for="female">Female</label>
+          {% else %}
+          <input class="form-check-input" value="Male" type="radio" name="gender" id="male" >
+          <label style="font-size:13px;color:#566573 ;font-weight:400;"class="form-check-label"  for="male">Male</label>
+          <br>
+          <input class="form-check-input" value="Female" type="radio" name="gender" id="female" checked>
+          <label style="font-size:13px;color:#566573 ;font-weight:400;" class="form-check-label" for="female">Female</label>
+
+          {% endif %}
+          </div>
+          </div>
+          <label for="id_age" style="font-size:13px;font-weight:700;margin:5px;color:black;">Age</label>
+          <input value="{{profile.age}}"type="text" class="form-control" id ="id_age" name="age"  style="border:1px solid #CACFD2;border-radius:50px;font-size:13px;color:black;font-weight:500;margin-bottom:10px;" required>
+          <label for="id_blood_group" style="font-size:13px;font-weight:700;margin:5px;color:black;">Blood Group</label>
+          <input value="{{profile.blood_group}}"  type="text" class="form-control" id ="id_blood_group" name="blood_group"  style="border:1px solid #CACFD2;border-radius:50px;font-size:13px;color:black;font-weight:500;margin-bottom:10px;" required>
+
+          <input  style="border:0px;color:white;box-shadow:none;font-size:1px"type="date" class="form-control" value="{{update_date|date:"Y-m-d" }}"  name="updated_on" required>
+
+        </div>
+        <div class="col-lg-6" style="padding:20px;">
+        <label for="height" style="font-size:13px;font-family: 'Roboto', sans-serif;color:gray;font-weight:400;margin:4px;">Height (in m)</label>  <input type="text" value="{{profile.height}}" class="form-control"name="height"  style=" background:#E5E7E9;border:0px;border-radius:50px;padding:18px;font-size:13px;color:black;margin-bottom:16px;" required>
+        <label for="weight" style="font-size:13px;font-family: 'Roboto', sans-serif;color:gray;font-weight:400;margin:4px;">Weight (in kg)</label>   <input type="text"  value="{{profile.weight }}" class="form-control"name="weight" style=" background:#E5E7E9;border:0px;border-radius:50px;padding:18px;font-size:13px;color:black;margin-bottom:12px;" required>
+          <label for="id_emergency_contact" style="font-size:13px;font-weight:700;margin:5px;color:black;">Emergency Contact</label>
+          <input value="{{profile.emergency_contact}}" type="text" class="form-control" id ="id_emergency_contact" name="emergency_contact"  style="border:1px solid #CACFD2;border-radius:50px;font-size:13px;color:black;font-weight:500;margin-bottom:10px;" required>
+
+          <label for="diabetic" style="font-size:14px;color:black;font-weight:700;margin:4px;">Diabetic</label>
+          <div class="" style="background:white;padding:5px;">
+          <div class="form-check">
+          {% if profile.diabetic %}
+          <input class="form-check-input" value="False" type="radio" name="diabetic" id="Dno" >
+          <label style="font-size:13px;color:#566573 ;font-weight:400;"class="form-check-label"  for="Dno">No</label>
+          <br>
+          <input class="form-check-input" value="True" type="radio" name="diabetic" id="Dyes" checked >
+          <label style="font-size:13px;color:#566573 ;font-weight:400;" class="form-check-label" for="Dyes">Yes</label>
+
+          {% else %}
+          <input class="form-check-input" value="False" type="radio" name="diabetic" id="Dno"checked >
+          <label style="font-size:13px;color:#566573 ;font-weight:400;"class="form-check-label"  for="Dno">No</label>
+          <br>
+          <input class="form-check-input" value="True" type="radio" name="diabetic" id="Dyes" >
+          <label style="font-size:13px;color:#566573 ;font-weight:400;" class="form-check-label" for="Dyes">Yes</label>
+
+          {% endif %}
+          </div>
+        </div>
+        </div>
+      </div>
+
+      {% for message in messages %}
+        <p style="text-align:center;color:green;font-size:13px">{{message}}</p>
+      {% endfor %}
+      <div class="text-center">
+        <button type="submit" class="btn btn-outline-primary" style="border-radius:50px;font-weight:400;font-size:14px;border-width:1px;padding:4px 12px 4px 12px">Save Changes <i class="bi bi-chevron-double-right"></i> </button>
+      </div>
+      </form>
+
+  </div>
+  <br><br>
+  {% else %}
+  <br><br>
+  <div class="text-center" style="padding:5%;padding-bottom:15%">
+  <p style="font-size:18px;font-weight:600;color:black;font-family: 'Roboto', sans-serif;text-align:center;margin:10px;" >Medical Profile Does Not Exist</p>
+  <p style="font-size:12px;color:#626567;">Medical Profile is not created, please click below to  <br>create your medical profile.</p>
+  <a class="btn btn-outline-primary" href="{% url 'create_medical_profile' %}" style="border-radius:30px;border-width:2px;font-size:16px;margin:auto;font-weight:600">Create</a>
+  </div>
+  <br><br>
+  {% endif %}
+  {% else %}
+  <br><br>
+  <div class="text-center" style="padding:5%;padding-bottom:15%">
+  <p style="font-size:18px;font-weight:600;color:black;font-family: 'Roboto', sans-serif;text-align:center;margin:10px;" >User not logged In</p>
+  <p style="font-size:12px;color:#626567;">Please login to access your account and update your <br>medical profile.</p>
+  <a class="btn btn-outline-primary" href="{% url 'user_login' %}" style="border-radius:30px;border-width:2px;font-size:16px;margin:auto;font-weight:600">Log In</a>
+  </div>
+  <br><br>
+  {% endif %}
+
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,75 @@
+{%  extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="bground1 container col-lg-7">
+
+  <div class="container" style="border:1px solid #e6e6e6 ;padding:15px 30px 15px 30px ;">
+    <p style="font-size:16px;font-weight:500;color:black;font-family: 'Roboto', sans-serif;text-align:center;margin:10px;" >Rate Us</p>
+
+    <form class=""  method="POST" enctype="multipart/form-data" action ="{% url 'rating' %}">
+      {% csrf_token %}
+      {% if not user.is_authenticated %}
+      <div class="container col-lg-7" style="padding:0px 22px 20px 22px ;">
+        <input type="text" class="form-control shadow-none "name="user" placeholder="Enter your name"style=" border:0px;border-bottom:1px solid  #e6e6e6 ; border-radius:0px;font-size:13px;color:black;text-align:center;" required>
+      </div>
+
+      {% endif %}
+      <div class="text-center" style="margin-bottom:10px;">
+      <div class="form-check form-check-inline"><input class="form-check-input" value="1" type="radio" name="rating_parameter" id="rating1" required><label style="font-size:12px;color:#566573 ;font-weight:600;font-family: 'Roboto', sans-serif;"class="form-check-label"  for="rating1">Very Poor</label></div>
+      <div class="form-check form-check-inline"><input class="form-check-input" value="2" type="radio" name="rating_parameter" id="rating2" required><label style="font-size:12px;color:#566573 ;font-weight:600;font-family: 'Roboto', sans-serif;"class="form-check-label"  for="rating2">Poor</label></div>
+      <div class="form-check form-check-inline"><input class="form-check-input" value="3" type="radio" name="rating_parameter" id="rating3" required><label style="font-size:12px;color:#566573 ;font-weight:600;font-family: 'Roboto', sans-serif;"class="form-check-label"  for="rating3">Average</label></div>
+      <div class="form-check form-check-inline"><input class="form-check-input" value="4" type="radio" name="rating_parameter" id="rating4"required ><label style="font-size:12px;color:#566573 ;font-weight:600;font-family: 'Roboto', sans-serif;"class="form-check-label"  for="rating4">Good</label></div>
+      <div class="form-check form-check-inline"><input class="form-check-input" value="5" type="radio" name="rating_parameter" id="rating5" required><label style="font-size:12px;color:#566573 ;font-weight:600;font-family: 'Roboto', sans-serif;"class="form-check-label"  for="rating5">Excellent</label></div>
+      </div>
+
+      <div class="text-center">
+      <textarea class="form-control" name="rating_message" placeholder="Write your comments here" id="id_reviewer_message" style="width:100%;height:60px;font-size:12px;padding:10px;border-radius:10px;overflow:hidden;resize: none;" required></textarea>
+      </div>
+      <br>
+      <div class="text-center">
+      <p style="font-size:13px;font-weight:600;color:black;font-family: 'Roboto', sans-serif;margin-bottom:5px;text-align:center">Rated for any particular feature ?</p>
+
+      <div class="form-check form-check-inline"><input class="form-check-input" value="Diabetes Diagnosis" type="radio" name="rating_tool" id="tool1" ><label style="font-size:12px;color:#566573 ;font-weight:400;font-family: 'Roboto', sans-serif;"class="form-check-label"  for="tool1">Diabetes</label></div>
+      <div class="form-check form-check-inline"><input class="form-check-input" value="CVD Diagnosis" type="radio" name="rating_tool" id="tool2"><label style="font-size:12px;color:#566573 ;font-weight:400;font-family: 'Roboto', sans-serif;"class="form-check-label"  for="tool2">CVD</label></div>
+      <div class="form-check form-check-inline"><input class="form-check-input" value="Liver Diagnosis" type="radio" name="rating_tool" id="tool3"><label style="font-size:12px;color:#566573 ;font-weight:400;font-family: 'Roboto', sans-serif;"class="form-check-label"  for="tool3">Liver Disease</label></div>
+      <div class="form-check form-check-inline"><input class="form-check-input" value="Brain Tumor Diagnosis" type="radio" name="rating_tool" id="tool4"><label style="font-size:12px;color:#566573 ;font-weight:400;font-family: 'Roboto', sans-serif;"class="form-check-label"  for="tool4">Brain Tumor</label></div>
+      <div class="form-check form-check-inline"><input class="form-check-input" value="AI Diet Planner" type="radio" name="rating_tool" id="tool5" ><label style="font-size:12px;color:#566573 ;font-weight:400;font-family: 'Roboto', sans-serif;"class="form-check-label"  for="tool5">AI Diet Planner</label></div>
+      <div class="form-check form-check-inline"><input class="form-check-input" value="Mental Health" type="radio" name="rating_tool" id="tool6" ><label style="font-size:12px;color:#566573 ;font-weight:400;font-family: 'Roboto', sans-serif;"class="form-check-label"  for="tool6">Mental Health</label></div>
+      <div class="form-check form-check-inline"><input class="form-check-input" value="AI Self-Diagnosis" type="radio" name="rating_tool" id="tool7" ><label style="font-size:12px;color:#566573 ;font-weight:400;font-family: 'Roboto', sans-serif;"class="form-check-label"  for="tool7">AI Self-Diagnosis</label></div>
+      </div>
+      <br>
+      <div class="text-center">
+        <button type="submit" class="btn btn-outline-primary" style="border-radius:50px;font-weight:400;font-size:13px;border-width:1px;padding:3px 10px 3px 10px">Submit <i class="bi bi-chevron-double-right"></i> </button>
+      </div>
+      </form>
+  </div>
+  <br>
+      <p style="font-size:16px;font-weight:600;color:black;font-family: 'Roboto', sans-serif;text-align:center;margin:10px;" >Reviews</p>
+      <hr>
+
+{% for i in reviews %}
+<div class="" style="padding:35px;border-radius:20px;background:#f2f2f2">
+  <p style="font-size:12.5px;font-weight:600;color:black;font-family: 'Roboto', sans-serif;margin-bottom:5px;"><i class="bi bi-person-fill"></i> {{i.rating_user}}</p>
+  {% if i.rating_parameter == '5' %}
+  <label style="font-size:13px;color:#ff9900"><i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i></label>
+  {% elif i.rating_parameter == '4' %}
+  <label style="font-size:13px;color:#ff9900"><i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star"></i></label>
+  {% elif i.rating_parameter == '3' %}
+  <label style="font-size:13px;color:#ff9900"><i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star"></i> <i class="bi bi-star"></i></label>
+  {% elif i.rating_parameter == '2' %}
+  <label style="font-size:13px;color:#ff9900"><i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star"></i> <i class="bi bi-star"></i> <i class="bi bi-star"></i></label>
+  {% elif i.rating_parameter == '1' %}
+  <label style="font-size:13px;color:#ff9900"><i class="bi bi-star-fill"></i> <i class="bi bi-star"></i> <i class="bi bi-star"></i> <i class="bi bi-star"></i> <i class="bi bi-star"></i></label>
+  {% endif %}
+  <label style="font-size:11px;font-weight:400;color:	 #666666;font-family: 'Roboto', sans-serif;">&nbsp &nbsp Posted on {{i.rating_time}}</label>
+  <hr>
+  <p style="font-size:12px;font-weight:400;color:#404040;font-family: 'Roboto', sans-serif;">{{i.rating_message}}</p>
+    <p style="font-size:11px;font-weight:400;color:#666666;font-family: 'Roboto', sans-serif;">Feature : <i>{{i.rating_tool}}</i></p>
+
+</div>
+<br><br>
+{% endfor %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,48 @@
+{% extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+<br><br>
+<div class="container col-lg-9">
+  <p style="text-align:center;padding:0px;font-size:12px;color:#797D7F;font-weight:400;font-family: 'Roboto', sans-serif;">
+    Contact with the healthcare experts registered with MediTrack. You can also book an appointment with any expert of your choice
+  </p>
+  
+  <!-- Specialization Filter -->
+  <form method="GET" style="text-align:center; margin-bottom:20px;">
+    <label for="specialization" style="margin-right:10px; font-weight:bold;">Filter by Specialization:</label>
+    <select name="specialization" id="specialization" onchange="this.form.submit()" style="padding:5px; border-radius:5px;">
+      <option value="All" {% if selected_specialization == 'All' %}selected{% endif %}>All</option>
+      {% for spec in specializations %}
+        <option value="{{ spec }}" {% if selected_specialization == spec %}selected{% endif %}>{{ spec }}</option>
+      {% endfor %}
+    </select>
+  </form>
+  
+  <div class="row">
+    {% for i in experts %}
+    <div class="col-lg-4 col-md-6 col-sm-10" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:15px;">
+      <div class="" style="width:100%;border-radius:15px;border:1px solid #CACFD2;padding:10px;">
+        <div class="text-center">
+          <img class="sharp" src="{{ i.expert_imageURL }}" style="width:140px;padding:5px;border-radius:300px;width:50%" >
+        </div>
+        <div class="" style="background:#F8F9F9;padding:20px;margin-top:-70px;border-radius:0px 0px 10px 10px ">
+          <p style="margin-bottom:70px;"></p>
+          <p style="margin:3px;font-size:14px;font-weight:500;color:black;font-family: 'Roboto', sans-serif;text-align:center">{{i.expert_name}}</p>
+          <p style="text-align:center;font-size:11px;font-weight:400;color: #666666;font-family: 'Roboto', sans-serif;">{{i.expert_designation}}</p>
+          <hr>
+          <div class="text-center">
+            <label ><a href="tel:{{ i.expert_contact }}"><i class="bi bi-telephone-fill" style="margin:7px;font-size:20px;"></i></a></label>
+           <label ><a href="mailto:{{ i.expert_email }}"><i class="bi bi-envelope" style="margin:7px;font-size:22px;"></i></a></label>
+           <br>
+           <a class="btn btn-outline-primary"data-product="{{ i.id }}"  href="{% url 'appointment' i.id %}" style="font-family: 'Roboto', sans-serif;border-radius:30px;border-width:1px;font-size:12.5px;margin:auto;font-weight:400;">Book an Appointment <i class="bi bi-chevron-double-right"></i></a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<br><br>
+
+{% endblock content %}

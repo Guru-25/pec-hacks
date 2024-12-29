@@ -1,0 +1,110 @@
+{%  extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+<div class="bground1">
+  <br>
+  <div class="container">
+    <div class="sharp" style="background-image:url({% static 'images/bg1.jpg'%});background-size:cover;background-repeat: no-repeat;background-attachment:fixed;background-position:center;width:100%;padding:30px;border-radius:20px;">
+      <br><br>
+      <p class="col-xl-7 col-lg-8"style="margin: 0px auto 0px auto;font-size:40px;font-weight:500;color:white;font-family: 'Roboto', sans-serif;text-align:center;">Transforming the healthcare with MediTrack</p>
+      <br>
+      <div class="row">
+        <div class="col-xl-6 col-lg-8 col-md-10" style="display:flex;flex-wrap:wrap;margin-left:auto;margin-right:auto;">
+          <div class="backdrop" style="width:100%;padding:20px;background:rgba(0,0,0,0.5);border-radius:20px;border:2px solid  #A6ACAF">
+            <div data-aos="zoom-in">
+              <p style="color:white;font-size:25px;font-weight:500;margin:0px;text-align:center">Why healthcare</p>
+              <hr>
+              <p class="statsgradient" style="color:#F2F3F4 ;font-size:11px;font-weight:400;margin:0px;text-align:center">When the pandemic hit, the healthcare system collapsed almost everywhere. Hospitals and healthcare centres were flooded with COVID-19 patients. Families of those who can afford hospital bills were hiring nurses and consulting doctors remotely to keep their loved ones breathing. It seems you can't get treated in hospitals, and now you can't save your loved ones even at home That is when we decided to build MediTrack. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   <br><br>
+
+    <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 col-12  row" style="margin-left:auto;margin-right:auto;" data-aos="fade-up">
+      <div class="text-center col-lg-12" style="margin:0px">          <p style="font-size:20px;font-weight:400;font-family: 'Roboto', sans-serif;color:black;text-align:center;margin-bottom:0px">Our Founder</p>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-10" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;padding-top:0px">
+        <div class="" style="width:100%;">
+          <hr>
+           <div class="col-lg-7 col-md-8 col-10" style="margin-left:auto;margin-right:auto;"><img class="sharp"src="{% static 'images/pec-profile.png'%}" alt="" style="width:100%;border-radius:300px;"></div>
+           <br>
+            <p style="font-size:16px;font-weight:400;font-family: 'Roboto', sans-serif;color:black;text-align:center;margin:0px;">The SolCrafters </p>
+            <p style="font-size:11px;color:#626567;font-weight:400;font-family: 'Roboto', sans-serif;margin:0px;text-align:center;">Thiagarajar College of Engineering</p>
+            <p style="font-size:11px;color:#626567;font-weight:400;font-family: 'Roboto', sans-serif;margin:0px;text-align:center;">Madurai, Tamil Nadu, India</p>
+            
+            <br>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-md-10 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px">
+        <div class="" style="width:100%" data-aos="fade-right">
+          <p class="col-xl-11"style="font-size:40px;font-weight:600;font-family: 'Roboto', sans-serif;color:#1a1a1a">A change in the way, you see your health.</p>
+
+          <p class="col-xl-11"style="font-size:13px;color:#626567;font-weight:400;font-family: 'Roboto', sans-serif;margin:0px;">Technology can change and improve the productivity of any sector, whether it is finance, real estate, or healthcare. Our ultimate focus is on the growing demand for services in the healthcare sector, rising costs, and the workforce that struggles a lot to meet the demand of millions of people. <br><br>Our proposed solution entitled MediTrack targets three different areas of the health sector, including specialized diagnosis to assist healthcare experts in clinical decision support and delivering the outcomes in response time with much better accuracy, mental health diagnosis with AI embedded systems, and self-diagnosis via symptoms, provided with medication and more.</p>
+
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-10 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px">
+        <div class="" style="width:100%" data-aos="fade-in">
+          <img src="{% static 'images/img2.jpg'%}" alt="" style="width:100%;border-radius:20px;">
+          <p style="font-size:25px;font-weight:600;font-family: 'Roboto', sans-serif;color:white;text-align:center;margin-top:-10%" data-aos="fade-up">Continue health care at home.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row"  style="margin:50px auto 50px auto;padding:10px">
+      <div class="col-lg-3 col-md-6" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:15px">
+        <div class="" style="width:100%">
+          <p style="font-size:30px;margin:0px;color:#626567;text-align:center;"><i class="bi bi-bag-plus-fill"></i></p>
+          <p style="text-align:center;font-size:15px;color:black;font-weight:500;font-family: 'Roboto', sans-serif;margin:5px;">Specialized Diagnosis</p>
+          <hr style="margin:0px;">
+          <p style="text-align:center;font-size:11px;color:#626567;font-weight:400;font-family: 'Roboto', sans-serif;margin:5px;">Choose from the pool Integrated Intelligent Diagnostic tools for predicting the presence of diabetes , CVD, liver disease & brain tumour, with up to 90% of accuracy.</p>
+              <p style="text-align:center;"><a  href="{% url 'diagnosistools'  %}" style="border-radius:30px;font-size:13px;font-weight:400;border:0px;">Learn More <i class="bi bi-chevron-right"></i></a></p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:15px">
+        <div class="" style="width:100%">
+          <p style="font-size:30px;margin:0px;color:#626567;text-align:center;"><i class="bi bi-bag-plus-fill"></i></p>
+          <p style="text-align:center;font-size:15px;color:black;font-weight:500;font-family: 'Roboto', sans-serif;margin:5px;">Mental Health</p>
+          <hr style="margin:0px;">
+          <p style="text-align:center;font-size:11px;color:#626567;font-weight:400;font-family: 'Roboto', sans-serif;margin:5px;">Embedded AI Model with tensorflow & NLP with 86% of accuracy. On the basis of your information, we provide mental health score on a scale of 0 to 100 with a set of suggestions.</p>
+          <p style="text-align:center;"><a  href="{% url 'mentalhealth'  %}" style="border-radius:30px;font-size:13px;font-weight:400;border:0px;">Learn More <i class="bi bi-chevron-right"></i></a></p>
+
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:15px">
+        <div class="" style="width:100%">
+          <p style="font-size:30px;margin:0px;color:#626567;text-align:center;"><i class="bi bi-bag-plus-fill"></i></p>
+          <p style="text-align:center;font-size:15px;color:black;font-weight:500;font-family: 'Roboto', sans-serif;margin:5px;">AI Self-Diagnosis</p>
+          <hr style="margin:0px;">
+          <p style="text-align:center;font-size:11px;color:#626567;font-weight:400;font-family: 'Roboto', sans-serif;margin:5px;">Specialized to predict 40+ diseases with an accuracy of 94%. Processed with the powerful SVM Algorithm. Also provide the medication suggestions corresponding to the disease.</p>
+          <p style="text-align:center;"><a  href="{% url 'healthcheckup'  %}" style="border-radius:30px;font-size:13px;font-weight:400;border:0px;">Learn More <i class="bi bi-chevron-right"></i></a></p>
+
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:15px">
+        <div class="" style="width:100%">
+          <p style="font-size:30px;margin:0px;color:#626567;text-align:center;"><i class="bi bi-bag-plus-fill"></i></p>
+          <p style="text-align:center;font-size:15px;color:black;font-weight:500;font-family: 'Roboto', sans-serif;margin:5px;">Diet Planner</p>
+          <hr style="margin:0px;">
+          <p style="text-align:center;font-size:11px;color:#626567;font-weight:400;font-family: 'Roboto', sans-serif;margin:5px;">We brought you the MediTrack diet planner, providing the diet supplement suggestions based on the health metrics provided by you. Integrated with AI based algorithms.</p>
+          <p style="text-align:center;"><a  href="{% url 'diet_plan'  %}" style="border-radius:30px;font-size:13px;font-weight:400;border:0px;">Learn More <i class="bi bi-chevron-right"></i></a></p>
+
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+</div>
+
+{% endblock content %}

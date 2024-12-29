@@ -1,0 +1,129 @@
+{%  extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+  <br><br>
+<div class="bground1 articlebg"style="" >
+
+  <div class="container" style="margin-left:auto;margin-right:auto;padding:0% 6% 6% 6%;position:relative">
+    <p style="font-family: 'Roboto', sans-serif;text-align :center;position:absolute;font-size:300px;font-weight:600;color:#E8EAEC;top: 35%;left: 50%;transform: translate(-50%, -50%);z-index:-1000;">MediTrack</p>
+
+    <p  style="font-size:18px;font-weight:500;font-family: 'Roboto', sans-serif;text-align :center;margin:0px;" data-aos="fade-up" data-aos-duration="3000">Specialized Diagnosis Tools</p>
+    <p  style="font-size:35px;font-weight:700;font-family: 'Roboto', sans-serif;text-align :center;" data-aos="fade-up" data-aos-duration="3000">Heavy on Features, Free to Use.</p>
+    <p class="col-lg-6"style="margin-left:auto;margin-right:auto;text-align:center;font-size:12px;color:#626567;font-weight:400;font-family: 'Roboto', sans-serif;" data-aos="fade-up" data-aos-duration="3000">Choose from the pool Integrated Intelligent Diagnostic tools for predicting the presence of diabetes , CVD, liver disease & brain tumour, with  up to 90% of accuracy of making correct predictions.</p>
+    <br>
+<br>
+
+<div class="row">
+
+        <div class="col-lg-3 col-md-6 col-sm-6 col-9" style="margin-bottom: 5px;margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;" data-aos="zoom-in">
+          <div class=" flipcard" style="margin:0px;padding:5px;border-radius:20px;border:1px solid #CACFD2;">
+             <div class="flipcard-wrap"  >
+               <div class="card card-front" style="width:100%;background:black;border-radius:15px;">
+                    <div class="card-body" style="padding:20px;">
+                   <p style="text-align:center;font-size:15px;color:white;font-weight:600;margin:0px;">Diabetes Diagnosis</p>
+                   <p style="text-align:center;font-size:11px;color:#BFC9CA;margin-bottom:5px;">90.4% Tool Accuracy</p>
+                   <p style="font-size:20px;margin:0px;color:white;"><i class="bi bi-three-dots"></i></p>
+                   <img src="{% static 'images/diabetes.jpg'%}"  style="width:100%;padding:5px;border-radius:15px;" >
+                   </div>
+                </div>
+                <div class="card card-back" style="background:black;">
+                  <div class="card-body" style="padding:15px;">
+                    <div class="text-center">
+                      <img class=""src="{% static 'images/logo4.png'%}" alt="" style="width:50px;">
+                    </div>
+                    <br>
+                    <p style="text-align:center;font-size:11px;color:#BFC9CA;">Developed with widely used Random Forest Algorithm, with an accuray of 90.4%.</p>
+                    <a class="btn btn-outline-primary" href="{% url 'diabetes_risk' %}" style="border-radius:30px;border-width:2px;font-size:15px;margin:auto;font-weight:700;">Open Tool <i class="bi bi-chevron-double-right"></i></a>
+
+                  </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 col-9" style="margin-bottom:5px;margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;" data-aos="zoom-in">
+          <div class=" flipcard" style="margin:0px;padding:5px;border-radius:20px;border:1px solid #CACFD2;">
+             <div class="flipcard-wrap"  >
+               <div class="card card-front" style="width:100%;background:black;border-radius:15px;">
+                    <div class="card-body" style="padding:20px;">
+                   <p style="text-align:center;font-size:15px;color:white;font-weight:600;margin:0px;">CVD Diagnosis</p>
+                   <p style="text-align:center;font-size:11px;color:#BFC9CA;margin-bottom:5px;">90.5% Tool Accuracy</p>
+                   <p style="font-size:20px;margin:0px;color:white;"><i class="bi bi-three-dots"></i></p>
+                   <img src="{% static 'images/heart.jpg'%}"  style="width:100%;padding:5px;border-radius:15px;" >
+                   </div>
+                </div>
+                <div class="card card-back" style="background:black;">
+                  <div class="card-body" style="padding:15px;">
+                    <div class="text-center">
+                      <img class=""src="{% static 'images/logo4.png'%}" alt="" style="width:50px;">
+                    </div>
+                    <br>
+                    <p style="text-align:center;font-size:11px;color:#BFC9CA;">Manual analysis of data is a lengthy and time consuming and with this tool the CVD can be predicted within seconds providing doctors & specialist with 90.5% of accurate results.</p>
+                    <a class="btn btn-outline-primary" href="{% url 'cvd_prediction' %}" style="border-radius:30px;border-width:2px;font-size:15px;margin:auto;font-weight:700;">Open Tool <i class="bi bi-chevron-double-right"></i></a>
+
+                  </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 col-9" style="margin-bottom:5px;margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;" data-aos="zoom-in">
+          <div class=" flipcard" style="margin:0px;padding:5px;border-radius:20px;border:1px solid #CACFD2;">
+             <div class="flipcard-wrap"  >
+               <div class="card card-front" style="width:100%;background:black;border-radius:15px;">
+                    <div class="card-body" style="padding:20px;">
+                   <p style="text-align:center;font-size:15px;color:white;font-weight:600;margin:0px;">Liver Diagnosis</p>
+                   <p style="text-align:center;font-size:11px;color:#BFC9CA;margin-bottom:5px;">84% Tool Accuracy</p>
+                   <p style="font-size:20px;margin:0px;color:white;"><i class="bi bi-three-dots"></i></p>
+                   <img src="{% static 'images/liver.jpg'%}"  style="width:100%;padding:5px;border-radius:15px;" >
+                   </div>
+                </div>
+                <div class="card card-back" style="background:black;">
+                  <div class="card-body" style="padding:15px;">
+                    <div class="text-center">
+                      <img class=""src="{% static 'images/logo4.png'%}" alt="" style="width:50px;">
+                    </div>
+                    <br>
+                    <p style="text-align:center;font-size:11px;color:#BFC9CA;">Developed with the powerful Gradient boosting Algorithm with an accuray of 84%.</p>
+                    <a class="btn btn-outline-primary" href="{% url 'liver_diagnosis' %}" style="border-radius:30px;border-width:2px;font-size:15px;margin:auto;font-weight:700;">Open Tool <i class="bi bi-chevron-double-right"></i></a>
+
+                  </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 col-9" style="margin-bottom:5px;margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;" data-aos="zoom-in">
+          <div class=" flipcard" style="margin:0px;padding:5px;border-radius:20px;border:1px solid #CACFD2;">
+             <div class="flipcard-wrap"  >
+               <div class="card card-front" style="width:100%;background:black;border-radius:15px;">
+                    <div class="card-body" style="padding:20px;">
+                   <p style="text-align:center;font-size:15px;color:white;font-weight:600;margin:0px;">Brain Tumour</p>
+                   <p style="text-align:center;font-size:11px;color:#BFC9CA;margin-bottom:5px;">92% Tool Accuracy</p>
+                   <p style="font-size:20px;margin:0px;color:white;"><i class="bi bi-three-dots"></i></p>
+                   <img src="{% static 'images/brain.jpg'%}"  style="width:100%;padding:5px;border-radius:15px;" >
+                   </div>
+                </div>
+                <div class="card card-back" style="background:black;">
+                  <div class="card-body" style="padding:15px;">
+                    <div class="text-center">
+                      <img class=""src="{% static 'images/logo4.png'%}" alt="" style="width:50px;">
+                    </div>
+                    <br>
+                    <p style="text-align:center;font-size:11px;color:#BFC9CA;">Developed with widely used Random Forest Algorithm. The accuracy of the tool stands at 92% provided with seventeen input fields to predict the final outcome.</p>
+                    <a class="btn btn-outline-primary" href="{% url 'detect_brain_tumor' %}" style="border-radius:30px;border-width:2px;font-size:15px;margin:auto;font-weight:700;">Open Tool <i class="bi bi-chevron-double-right"></i></a>
+
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

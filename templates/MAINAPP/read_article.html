@@ -1,0 +1,78 @@
+{%  extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+<div class="bground1" >
+<br><br>
+
+<div class="container" style="">
+  <div class="col-lg-12" style="margin-left:auto;margin-right:auto;">
+  <div class="row">
+    <div class="col-lg-8 col-md-12 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;margin-bottom:20px;">
+      <div class="" style="padding:20px;width:100%;">
+        <p   style="font-size:40px;font-weight:400;color:black;font-family: 'Roboto', sans-serif;">{{page.disease_name}}</p>
+        <div class="row">
+          <div class="col-lg-8 col-md-6 col-sm-6 col-6" >
+            <p style="color:#626567;font-size:13px;margin-bottom:3px;">Posted on . <i>{{page.posted_on}}</i></p>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6 col-6">
+            <p style="color:#626567;font-size:13px;text-align:right;margin-bottom:3px;">Article ID . MediTrack A{{page.id}}</p>
+          </div>
+        </div>
+        <hr style="margin-top:0px;">
+
+          <p style="white-space: pre-wrap;font-size:13px;color:#626567 ;font-family: 'Roboto', sans-serif;">{{page.disease_description}}</p>
+         <div class="row">
+           <div class="col-lg-6 col-md-6 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding: 20px;">
+             <div class="" style="width:100%;background:#F2F3F4;padding:20px;">
+               <p style="white-space: pre-wrap;font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:0px;text-align:center;">Symptoms</p>
+               <hr color="#e6e6e6" style="margin:6px 0px 6px 0px;">
+               <p style="white-space: pre-wrap;font-size:13px;font-family: 'Roboto', sans-serif;color:#626567 ;">{{page.disease_symptoms}}</p>
+             </div>
+           </div>
+           <div class="col-lg-6 col-md-6 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding: 20px;">
+             <div class="" style="width:100%;background:#F2F3F4;padding:20px;">
+               <p style="white-space: pre-wrap;font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:0px;text-align:center;">Precautions</p>
+               <hr color="#e6e6e6" style="margin:6px 0px 6px 0px;">
+               <p style="white-space: pre-wrap;font-size:13px;font-family: 'Roboto', sans-serif;color:#626567 ;">{{page.disease_precautions}}</p>
+             </div>
+           </div>
+           <div class="col-lg-12 col-md-12 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding: 20px;">
+             <div class="" style="width:100%;border:1px solid #CACFD2;padding:20px;">
+               <p style="white-space: pre-wrap;font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:0px;text-align:center;">Medication</p>
+               <hr  style="margin:6px 0px 6px 0px;">
+               <p style="white-space: pre-wrap;font-size:13px;font-family: 'Roboto', sans-serif;color:#626567 ;">{{page.disease_medication}}</p>
+             </div>
+           </div>
+         </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-10 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;margin-bottom:20px;">
+      <div class="" style="width:100%;padding:20px;">
+        <div class="" style="margin-bottom:20px;">
+          <p style="text-align:right;color:black;font-size:13px;margin:0px;letter-spacing:3px;">LATEST POSTS</p>
+          <hr  style="margin:7px 0px 10px 0px;">
+                  {% for topic in topics %}
+                  {% if forloop.counter < 9 %}
+                  <p style="margin-bottom:0px;"><a data-product="{{ topic.id }}" href="{% url 'read_article' topic.id %}"
+                    style="font-size:13px;margin-bottom:0px;font-weight:400;">{{topic.disease_name}}</a></p>
+                    <p style="font-size:10.5px;color:#626567;margin-bottom:0px;">Posted on : {{topic.posted_on}}</p>
+                    <hr style="margin-top:5px;margin-bottom:5px">
+                {% endif %}
+                {% endfor %}
+        </div>
+        <div class="" style="padding:20px;border:1px solid #CACFD2;border-radius:13px;margin-top:40px;">
+          <p style="color:#626567;font-size:13px;letter-spacing:3px;text-align:center">OUR PURPOSE</p>
+          <hr>
+          <p style="font-size:11px;color:#626567;text-align:center">Our ultimate focus is on the growing demand for services in the healthcare sector, rising costs, and the workforce that struggles a lot to meet the demand of millions of people.</p>
+        </div>
+        <div class="text-center" style="padding:20px;margin-bottom:20px;">
+          <p style="font-size:12px;color:#626567;font-weight:400;font-family: 'Roboto', sans-serif;margin:5px;text-align:center;margin:0px;">For any queries, drop a mail at  <a href="mailto:meditrack@gururaja.in">meditrack@gururaja.in</a> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,170 @@
+{%  extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+<div class="" style="">
+<br><br>
+<div class="loginwindow container" style="padding:0px 5% 50px 5%;">
+<div class="" style="border:1px solid #e6e6e6;padding:30px;border-radius:20px;">
+
+<p style="font-size:20px;color:black;text-align:center;font-weight:500;font-family: 'Roboto', sans-serif;">Register as Healthcare Expert</p>
+{%  if registered %}
+  {% for message in messages %}
+  <p style="text-align:center;color:#00cc00;font-size:12px">{{message}}</p>
+  {% endfor %}
+  <div class="text-center">
+  <p style="font-size:13px;color:#626567;">You can now login to your registered account, We are excited to host you.</p>
+  <a class="btn btn-outline-primary" href="{% url 'user_login' %}" style="border-radius:30px;border-width:2px;font-size:16px;margin:auto;font-weight:600">Log In</a>
+  </div>
+  {% elif user.is_authenticated %}
+  <div class="text-center">
+    <p style="color:#00cc00;font-size:12px">You are already registered.</p>
+    <a class="btn btn-outline-dark" href="{% url 'home' %}"
+    style="border-radius:80px;font-size:14px;font-weight:700;">Back to home <i class="bi bi-chevron-double-right"></i></a>
+
+  </div>
+  {% elif user_form.errors %}
+  <div style="color:red;font-size:12px;">{{user_form.errors}}</div>
+  <div class="text-center">
+  <a class="btn btn-outline-primary" href="{% url 'user_login' %}" style="border-radius:30px;border-width:2px;font-size:16px;margin:auto;font-weight:600;margin:10px;">Log In</a>
+  <a class="btn btn-outline-primary" href="{% url 'register' %}" style="border-radius:30px;border-width:2px;font-size:16px;margin:auto;font-weight:600;margin:10px;">Sign Up</a>
+  </div>
+
+  {% else %}
+
+  <form class="needs-validation" action="{% url 'registerasexpert' %}" enctype="multipart/form-data" method="POST" novalidate>
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-lg-6 col-md-10 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;">
+        <div  class="" style="width:100%;padding:20px">
+          <div class="required_fields">
+            <input type="text" class="form-control"name="first_name"  placeholder="First Name"
+            style=" background:#E5E7E9;border:0px;border-radius:50px;padding:20px;font-size:13px;color:black;" required>
+            <div class="invalid-feedback">
+              <p style="font-size:12px;margin:3px;text-align:right;color:red">Invalid details</p>
+            </div>
+          </div><br>
+          <div class="required_fields">
+            <input type="text" class="form-control"name="last_name"  placeholder="Last Name"
+            style=" background: #E5E7E9;border:0px;border-radius:50px;padding:20px;font-size:13px;color:black;" required>
+            <div class="invalid-feedback">
+              <p style="font-size:12px;margin:3px;text-align:right;color:red">Invalid details</p>
+            </div>
+          </div>
+          <p style="font-size:11px;margin:11px 0px 4px 5px;">Use only letters & digits</p>
+          <div class="required_fields">
+            <input type="text" class="form-control"name="username" pattern="(?=.{1,50}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])" placeholder="Username"
+            style=" background:#E5E7E9;border:0px;border-radius:50px;padding:20px;font-size:13px;color:black;" required>
+            <div class="invalid-feedback">
+              <p style="font-size:12px;margin:3px;text-align:right;color:red">Invalid username</p>
+            </div>
+          </div>
+
+          <p style="font-size:11px;margin:11px 0px 4px 5px;">Minimum eight characters</p>
+        <div class="required_fields">
+          <input type="password" class="form-control" id="myInput" name="password" pattern="().{8,}" placeholder="Password"
+          style=" background:#E5E7E9;border:0px;border-radius:50px;padding:20px;font-size:13px;color:black;" required>
+          <div class="invalid-feedback">
+            <p style="font-size:12px;margin:3px;text-align:right;color:red;">Invalid password</p>
+          </div>
+          <input type="checkbox"  onclick="myFunction()">
+          <label for="myInput" style="font-size:14px;color:#626567;"><small class="form-text text-muted">Show Password</small></label>
+        </div>
+
+        <div class="required_fields">
+          <input type="email" class="form-control"name="email" placeholder="Email"
+          style=" background:#E5E7E9;border:0px;border-radius:50px;padding:20px;font-size:13px;color:black;" required>
+          <div class="invalid-feedback">
+            <p style="font-size:12px;margin:3px;text-align:right;color:red;">Invalid email</p>
+          </div>
+        </div>
+
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-10 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;">
+        <div  class="" style="width:100%;padding:20px">
+          <div class="required_fields">
+            <input type="text" class="form-control"name="expert_designation"  placeholder="Designation"
+            style=" background:#E5E7E9;border:0px;border-radius:50px;padding:20px;font-size:13px;color:black;" required>
+            <div class="invalid-feedback">
+              <p style="font-size:12px;margin:3px;text-align:right;color:red">Invalid details</p>
+            </div>
+          </div><br>
+          <div class="required_fields">
+            <div class="input-group mb-12" >
+              <label for="expert_specialization" style="font-size:13px;padding:5px 10px 5px 10px;font-family: 'Roboto', sans-serif;color:#626567">Specialization</label>
+              <select class="custom-select" name="expert_specialization" style="border-radius:50px;font-size:13px;margin-bottom:12px;" required>
+                <option  value="None" selected>None</option>
+                 <option value="Diabetes">Diabetes</option>
+                 <option value="Heart Disease">Heart Disease</option>
+                 <option value="Liver Disease">Liver Disease</option>
+                 <option value="Brain Tumor">Brain Tumor</option>
+
+              </select>
+            </div>
+            <div class="invalid-feedback">
+              <p style="font-size:12px;margin:3px;text-align:right;color:red">Invalid details</p>
+            </div>
+          </div><br>
+          <input type="text" class="form-control"name="expert_specialization2"  placeholder="If none please specify"
+          style=" background:white;border:1px solid gray;border-radius:50px;padding:15px;font-size:13px;color:black;">
+          <br>
+          <div class="required_fields">
+            <input type="text" class="form-control"name="expert_address"  placeholder="Address"
+            style=" background:#E5E7E9;border:0px;border-radius:50px;padding:20px;font-size:13px;color:black;" required>
+            <div class="invalid-feedback">
+              <p style="font-size:12px;margin:3px;text-align:right;color:red">Invalid details</p>
+            </div>
+          </div><br>
+          <div class="required_fields">
+            <input type="text" class="form-control"name="expert_contact"  placeholder="Contact Number"
+            style=" background:#E5E7E9;border:0px;border-radius:50px;padding:20px;font-size:13px;color:black;" required>
+            <div class="invalid-feedback">
+              <p style="font-size:12px;margin:3px;text-align:right;color:red">Invalid details</p>
+            </div>
+          </div><br>
+          <div class="required_fields">
+            <label for="id_expert_image" style="font-size:13px;font-weight:700;margin:5px;color:black;">Profile Picture</label>
+            <input type="file" class="form-control shadow-none"  name="expert_image" accept="image/*" id="id_expert_image"  style="border:0px;font-size:12px;font-family: 'Roboto', sans-serif;background:transparent" required>
+
+            <div class="invalid-feedback">
+              <p style="font-size:12px;margin:3px;text-align:right;color:red">Choose an Image</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <br>
+    <input type="submit" class="btn btn-outline-primary  text-center" value=" Register " style="border-radius:30px;border-width:1px;font-size:14px;margin:auto;font-weight:400"">
+    </div>
+  </form>
+<br>
+
+  {% endif  %}
+</div>
+</div>
+</div>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+'use strict';
+window.addEventListener('load', function() {
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.getElementsByClassName('needs-validation');
+  // Loop over them and prevent submission
+  var validation = Array.prototype.filter.call(forms, function(form) {
+    form.addEventListener('submit', function(event) {
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+}, false);
+})();
+</script>
+
+
+{% endblock content %}
